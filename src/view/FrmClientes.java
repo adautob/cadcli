@@ -48,46 +48,46 @@ public class FrmClientes extends JFrame {
 		
 		JLabel lblCadastroDeClientes = new JLabel("Cadastro de Clientes");
 		lblCadastroDeClientes.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblCadastroDeClientes.setBounds(119, 12, 200, 15);
+		lblCadastroDeClientes.setBounds(139, 12, 200, 15);
 		contentPane.add(lblCadastroDeClientes);
 		
 		JButton btnNewButton = new JButton("Sair");
 		
 		btnNewButton.addActionListener(e -> clientescontroller.fecharTela()); // actionlistener usando lambda
-		btnNewButton.setBounds(337, 79, 117, 25);
+		btnNewButton.setBounds(349, 79, 117, 25);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(40, 39, 70, 15);
+		lblNome.setBounds(12, 39, 70, 15);
 		contentPane.add(lblNome);
 		
 		JLabel lblIdade = new JLabel("Idade:");
-		lblIdade.setBounds(337, 39, 70, 15);
+		lblIdade.setBounds(349, 39, 70, 15);
 		contentPane.add(lblIdade);
 		
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(40, 52, 248, 19);
+		textFieldNome.setBounds(12, 52, 285, 19);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
 		textFieldIdade = new JTextField();
-		textFieldIdade.setBounds(337, 52, 117, 19);
+		textFieldIdade.setBounds(349, 52, 117, 19);
 		contentPane.add(textFieldIdade);
 		textFieldIdade.setColumns(10);
 		
 		JButton btnSalvar = new JButton("Salvar");
 
 		btnSalvar.addActionListener(e -> clientescontroller.salvarCliente());
-		btnSalvar.setBounds(40, 79, 117, 25);
+		btnSalvar.setBounds(12, 79, 117, 25);
 		contentPane.add(btnSalvar);
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addActionListener(e -> clientescontroller.limparCampos());
-		btnNovo.setBounds(182, 79, 117, 25);
+		btnNovo.setBounds(154, 79, 117, 25);
 		contentPane.add(btnNovo);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(40, 132, 414, 185);
+		scrollPane.setBounds(12, 131, 454, 186);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -121,7 +121,7 @@ public class FrmClientes extends JFrame {
 		
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(e -> clientescontroller.removerSelecionado());
-		btnRemover.setBounds(40, 329, 117, 25);
+		btnRemover.setBounds(12, 329, 117, 25);
 		contentPane.add(btnRemover);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(330);

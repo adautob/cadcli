@@ -29,6 +29,8 @@ public class FrmClientes extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldIdade;
 	private JTable table;
+	private JTextField textFieldEmail;
+	private JTextField textFieldTelefone;
 
 
 
@@ -54,7 +56,7 @@ public class FrmClientes extends JFrame {
 		JButton btnNewButton = new JButton("Sair");
 		
 		btnNewButton.addActionListener(e -> clientescontroller.fecharTela()); // actionlistener usando lambda
-		btnNewButton.setBounds(349, 79, 117, 25);
+		btnNewButton.setBounds(349, 135, 117, 25);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNome = new JLabel("Nome:");
@@ -78,16 +80,16 @@ public class FrmClientes extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 
 		btnSalvar.addActionListener(e -> clientescontroller.salvarCliente());
-		btnSalvar.setBounds(12, 79, 117, 25);
+		btnSalvar.setBounds(12, 135, 117, 25);
 		contentPane.add(btnSalvar);
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addActionListener(e -> clientescontroller.limparCampos());
-		btnNovo.setBounds(154, 79, 117, 25);
+		btnNovo.setBounds(159, 135, 117, 25);
 		contentPane.add(btnNovo);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 131, 454, 186);
+		scrollPane.setBounds(12, 172, 454, 145);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -115,7 +117,7 @@ public class FrmClientes extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Nome", "Idade"
+				"Nome", "Email", "Telefone", "Idade"
 			}
 		));
 		
@@ -123,12 +125,36 @@ public class FrmClientes extends JFrame {
 		btnRemover.addActionListener(e -> clientescontroller.removerSelecionado());
 		btnRemover.setBounds(12, 329, 117, 25);
 		contentPane.add(btnRemover);
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(330);
-		table.getColumnModel().getColumn(0).setMaxWidth(330);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(80);
-		table.getColumnModel().getColumn(1).setMaxWidth(80);
+		
+		textFieldEmail = new JTextField();
+		textFieldEmail.setBounds(12, 92, 285, 19);
+		contentPane.add(textFieldEmail);
+		textFieldEmail.setColumns(10);
+		
+		textFieldTelefone = new JTextField();
+		textFieldTelefone.setBounds(302, 92, 164, 19);
+		contentPane.add(textFieldTelefone);
+		textFieldTelefone.setColumns(10);
+		
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setBounds(12, 76, 70, 15);
+		contentPane.add(lblEmail);
+		
+		JLabel lblTelefone = new JLabel("Telefone");
+		lblTelefone.setBounds(304, 76, 70, 15);
+		contentPane.add(lblTelefone);
+		table.getColumnModel().getColumn(0).setResizable(true);
+		table.getColumnModel().getColumn(0).setPreferredWidth(150);
+		table.getColumnModel().getColumn(0).setMaxWidth(150);
+		table.getColumnModel().getColumn(1).setResizable(true);
+		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+		table.getColumnModel().getColumn(1).setMaxWidth(150);
+		table.getColumnModel().getColumn(2).setResizable(true);
+		table.getColumnModel().getColumn(2).setPreferredWidth(100);
+		table.getColumnModel().getColumn(2).setMaxWidth(100);
+		table.getColumnModel().getColumn(3).setResizable(true);
+		table.getColumnModel().getColumn(3).setPreferredWidth(50);
+		table.getColumnModel().getColumn(3).setMaxWidth(50);
 		
 		clientescontroller.atualizarTabela();
 	}
@@ -141,6 +167,16 @@ public class FrmClientes extends JFrame {
 
 	public JTextField getTextFieldIdade() {
 		return this.textFieldIdade;
+	}
+	
+
+	public JTextField getTextFieldEmail() {
+		return this.textFieldEmail;
+	}
+
+
+	public JTextField getTextFieldTelefone() {
+		return this.textFieldTelefone;
 	}
 
 

@@ -15,11 +15,16 @@ public class ClientesHelper {
 	}
 
 	public Cliente getCliente() {
-		return new Cliente(frmClientes.getTextFieldNome().getText(), frmClientes.getTextFieldIdade().getText());
+		return new Cliente(frmClientes.getTextFieldNome().getText(),
+				frmClientes.getTextFieldEmail().getText(),
+				frmClientes.getTextFieldTelefone().getText(),
+				frmClientes.getTextFieldIdade().getText());
 	}
 
 	public void limparCampos() {
 		frmClientes.getTextFieldNome().setText("");
+		frmClientes.getTextFieldEmail().setText("");
+		frmClientes.getTextFieldTelefone().setText("");
 		frmClientes.getTextFieldIdade().setText("");
 		frmClientes.getTextFieldNome().requestFocus();
 	}
@@ -35,7 +40,9 @@ public class ClientesHelper {
 		for (Cliente cliente : clientes) {
 			tm.addRow(new Object[] {
 					cliente.getNome(),
-					cliente.getIdade()
+					cliente.getEmail(),
+					cliente.getTelefone(),
+					cliente.getIdade()					
 			});
 			
 			
@@ -53,6 +60,8 @@ public class ClientesHelper {
 
 	public void preencherCampos(Cliente cliente) {
 		frmClientes.getTextFieldNome().setText(cliente.getNome());
+		frmClientes.getTextFieldEmail().setText(cliente.getEmail());
+		frmClientes.getTextFieldTelefone().setText(cliente.getTelefone());
 		frmClientes.getTextFieldIdade().setText(cliente.getIdade());
 	}
 }

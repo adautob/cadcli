@@ -14,7 +14,7 @@ public class Banco {
 	public static void inicia() {
 		clientes = new ArrayList<Cliente>();
 		
-		Cliente c1 = new Cliente("Adauto", "39");
+		Cliente c1 = new Cliente("Adauto", "adauto@email.com", "7384738743", "39");
 		
 		clientes.add(c1);
 		

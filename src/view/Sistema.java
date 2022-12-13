@@ -72,13 +72,22 @@ public class Sistema extends JFrame {
 		menuBar.add(mnCadastro);
 		
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
+		JMenuItem mntmProdutos = new JMenuItem("Produtos");
+		mntmProdutos.setMnemonic('P');
 		mntmClientes.setMnemonic('C');
 		mntmClientes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					telacontroller.navegarClientes();
 				}
 			});
+		mntmProdutos.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					telacontroller.navegarProdutos();
+				}
+		});
 		mnCadastro.add(mntmClientes);
+		mnCadastro.add(mntmProdutos);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,5 +98,4 @@ public class Sistema extends JFrame {
 		btnSair.setBounds(556, 358, 117, 25);
 		contentPane.add(btnSair);
 	}
-
 }

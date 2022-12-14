@@ -51,7 +51,7 @@ public class Sistema extends JFrame {
 		setTitle("Sistema");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 695, 450);
+		setBounds(100, 100, 700, 500);
 		TelaController  telacontroller = new TelaController(this);
 		
 		JMenuBar menuBar = new JMenuBar();

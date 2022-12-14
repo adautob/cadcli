@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 public class Cliente {
 	private String nome;
 	private String email;
 	private String telefone;
 	private String idade;
+	private List<Venda> vendas;
 	
 	public Cliente(String nome, String email, String telefone, String idade) {
 		this.nome = nome;
@@ -14,6 +17,19 @@ public class Cliente {
 	}
 
 	
+	
+	public List<Venda> getVendas() {
+		return vendas;
+	}
+
+
+
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
+
+
+
 	public String getEmail() {
 		return email;
 	}

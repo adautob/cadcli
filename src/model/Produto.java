@@ -1,27 +1,27 @@
 package model;
 
 public class Produto {
-	private int Id;
-	private String Descricao;
-	private Double Preco;
+	private Long id;
+	private String descricao;
+	private Double preco;
 	
-	public int getId() {
-		return Id;
+	public Long getId() {
+		return id;
 	}
-	public void setId(int id) {
-		Id = id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getDescricao() {
-		return Descricao;
+		return descricao;
 	}
 	public void setDescricao(String descricao) {
-		Descricao = descricao;
+		this.descricao = descricao;
 	}
 	public Double getPreco() {
-		return Preco;
+		return preco;
 	}
 	public void setPreco(Double preco) {
-		Preco = preco;
+		this.preco = preco;
 	}	
 
 }

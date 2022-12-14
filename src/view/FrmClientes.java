@@ -42,7 +42,7 @@ public class FrmClientes extends JFrame {
 		ClientesController clientescontroller = new ClientesController(this);
 		setTitle("Cadastro de Clientes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 488, 400);
+		setBounds(100, 100, 650, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,7 +89,7 @@ public class FrmClientes extends JFrame {
 		contentPane.add(btnNovo);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 172, 454, 145);
+		scrollPane.setBounds(12, 172, 651, 145);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();

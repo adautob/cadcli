@@ -17,6 +17,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import java.awt.FlowLayout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class FrmProdutos extends JFrame {
 
@@ -26,6 +27,8 @@ public class FrmProdutos extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -78,6 +81,24 @@ public class FrmProdutos extends JFrame {
 				"Descri\u00E7\u00E3o", "Pre\u00E7o"
 			}
 		));
+		
+		JLabel lblDescris = new JLabel("Descrição");
+		lblDescris.setBounds(12, 49, 70, 15);
+		contentPane.add(lblDescris);
+		
+		JLabel lblPreo = new JLabel("Preço");
+		lblPreo.setBounds(27, 88, 70, 15);
+		contentPane.add(lblPreo);
+		
+		textField = new JTextField();
+		textField.setBounds(86, 47, 412, 19);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(86, 86, 114, 19);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
 		table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		table.getColumnModel().getColumn(0).setMinWidth(200);
 		table.getColumnModel().getColumn(1).setPreferredWidth(50);

@@ -9,9 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
+import controller.ProdutosController;
 
 public class FrmProdutos extends JFrame {
 
@@ -23,8 +29,6 @@ public class FrmProdutos extends JFrame {
 	private JTable table;
 	private JTextField textFieldDescricao;
 	private JTextField textFieldPreco;
-	
-	
 
 	public JTable getTable() {
 		return table;
@@ -60,49 +64,63 @@ public class FrmProdutos extends JFrame {
 	public FrmProdutos() {
 		final Integer LARGURA = 520;
 		final Integer ALTURA = 345;
-		
+
+		ProdutosController produtosController = new ProdutosController(this);
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, LARGURA, ALTURA);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblCadas = new JLabel("Cadastro de Produtos");
 		lblCadas.setBounds(149, 10, 196, 19);
 		lblCadas.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblCadas.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblCadas);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(2, ALTURA-203, LARGURA-11, ALTURA/2);
+		scrollPane.setBounds(2, ALTURA - 203, LARGURA - 11, ALTURA / 2);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"Descri\u00E7\u00E3o", "Pre\u00E7o"
+
+		table.setShowHorizontalLines(false);
+		table.setName("");
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel selectionModel = table.getSelectionModel();
+		selectionModel.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				int index = table.getSelectedRow();
+				if ((!e.getValueIsAdjusting()) && (index > -1)) {
+					System.out.println(produtosController.getProduto());
+					System.out.println(index);
+					produtosController.preencherCampos();
+				}
+
 			}
-		));
-		
+		});
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null }, { null, null }, },
+				new String[] { "Descri\u00E7\u00E3o", "Pre\u00E7o" }));
+
 		JLabel lblDescris = new JLabel("Descrição");
 		lblDescris.setBounds(12, 49, 70, 15);
 		contentPane.add(lblDescris);
-		
+
 		JLabel lblPreo = new JLabel("Preço");
 		lblPreo.setBounds(27, 88, 70, 15);
 		contentPane.add(lblPreo);
-		
+
 		textFieldDescricao = new JTextField();
 		textFieldDescricao.setBounds(86, 47, 412, 19);
 		contentPane.add(textFieldDescricao);
 		textFieldDescricao.setColumns(10);
-		
+
 		textFieldPreco = new JTextField();
 		textFieldPreco.setBounds(86, 86, 114, 19);
 		contentPane.add(textFieldPreco);
@@ -111,7 +129,8 @@ public class FrmProdutos extends JFrame {
 		table.getColumnModel().getColumn(0).setMinWidth(200);
 		table.getColumnModel().getColumn(1).setPreferredWidth(50);
 		table.getColumnModel().getColumn(1).setMinWidth(50);
-		
-	
+
+		produtosController.atualizarTabela();
+
 	}
 }

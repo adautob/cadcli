@@ -18,6 +18,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.ProdutosController;
+import javax.swing.JButton;
 
 public class FrmProdutos extends JFrame {
 
@@ -125,6 +126,26 @@ public class FrmProdutos extends JFrame {
 		textFieldPreco.setBounds(86, 86, 114, 19);
 		contentPane.add(textFieldPreco);
 		textFieldPreco.setColumns(10);
+		
+		JButton btnNovo = new JButton("Novo");
+		btnNovo.addActionListener(e -> produtosController.limparCampos());
+		btnNovo.setBounds(248, 78, 117, 25);
+		contentPane.add(btnNovo);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.addActionListener(e -> produtosController.fecharTela());
+		btnSair.setBounds(377, 105, 117, 25);
+		contentPane.add(btnSair);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(e ->produtosController.salvarProduto());
+		btnSalvar.setBounds(248, 105, 117, 25);
+		contentPane.add(btnSalvar);
+		
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(e -> produtosController.removerSelecionado());
+		btnRemover.setBounds(377, 78, 117, 25);
+		contentPane.add(btnRemover);
 		table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		table.getColumnModel().getColumn(0).setMinWidth(200);
 		table.getColumnModel().getColumn(1).setPreferredWidth(50);

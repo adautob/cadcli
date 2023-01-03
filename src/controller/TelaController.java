@@ -3,6 +3,7 @@ package controller;
 import dao.Banco;
 import view.FrmClientes;
 import view.FrmProdutos;
+import view.FrmVendas;
 import view.Sistema;
 
 public class TelaController {
@@ -30,8 +31,15 @@ public class TelaController {
 		frmProdutos.setVisible(true);
 	}
 	
+	public void navegarVendas() {
+		FrmVendas frmVendas = new FrmVendas();
+		frmVendas.setLocationRelativeTo(tela);
+		frmVendas.setVisible(true);
+	}
+	
 	public Banco getBanco() {
 		return tela.banco;
 	}
+
 	
 }

@@ -2,19 +2,16 @@ package view;
 
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.TelaController;
 import dao.Banco;
-
-import javax.swing.JButton;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JMenuBar;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Sistema extends JFrame {
 
@@ -73,21 +70,16 @@ public class Sistema extends JFrame {
 		
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
 		JMenuItem mntmProdutos = new JMenuItem("Produtos");
+		JMenuItem mntmVendas = new JMenuItem("Vendas");
 		mntmProdutos.setMnemonic('P');
 		mntmClientes.setMnemonic('C');
-		mntmClientes.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					telacontroller.navegarClientes();
-				}
-			});
-		mntmProdutos.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					telacontroller.navegarProdutos();
-				}
-		});
+		mntmVendas.setMnemonic('V');
+		mntmClientes.addActionListener(e -> telacontroller.navegarClientes());
+		mntmProdutos.addActionListener(e -> telacontroller.navegarProdutos());
+		mntmVendas.addActionListener(e -> telacontroller.navegarVendas());
 		mnCadastro.add(mntmClientes);
 		mnCadastro.add(mntmProdutos);
+		mnCadastro.add(mntmVendas);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

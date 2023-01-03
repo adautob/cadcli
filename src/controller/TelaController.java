@@ -20,13 +20,13 @@ public class TelaController {
 	
 	public void navegarClientes(){
 		FrmClientes frmClientes = new FrmClientes();
-		frmClientes.setLocationRelativeTo(null);
+		frmClientes.setLocationRelativeTo(tela);
 		frmClientes.setVisible(true);
 	}
 	
 	public void navegarProdutos(){
 		FrmProdutos frmProdutos = new FrmProdutos();
-		frmProdutos.setLocationRelativeTo(null);
+		frmProdutos.setLocationRelativeTo(tela);
 		frmProdutos.setVisible(true);
 	}
 	

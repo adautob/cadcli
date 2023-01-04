@@ -80,6 +80,11 @@ public class Sistema extends JFrame {
 		mnCadastro.add(mntmClientes);
 		mnCadastro.add(mntmProdutos);
 		mnCadastro.add(mntmVendas);
+		
+		JMenu mnVendas = new JMenu("Vendas");
+		mnVendas.setMnemonic('V');
+		menuBar.add(mnVendas);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

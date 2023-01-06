@@ -35,11 +35,38 @@ public class FrmVendas extends JFrame {
 	private JScrollPane scrollPane;
 	private JTable table;
 	private JTextField textFieldTotal;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFieldIdCliente;
+	private JTextField textFieldNomeCliente;
 	private JTextField textFieldCodigoProduto;
 	private JTextField textFieldQtde;
+	private JTextField textFieldDescricao;
 
+	
+	
+	public JTextField getTextFieldTotal() {
+		return textFieldTotal;
+	}
+
+	public JTextField getTextFieldIdCliente() {
+		return textFieldIdCliente;
+	}
+
+	public JTextField getTextFieldNomeCliente() {
+		return textFieldNomeCliente;
+	}
+
+	public JTextField getTextFieldCodigoProduto() {
+		return textFieldCodigoProduto;
+	}
+
+	public JTextField getTextFieldQtde() {
+		return textFieldQtde;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -124,19 +151,20 @@ public class FrmVendas extends JFrame {
 		lblId.setHorizontalAlignment(SwingConstants.LEFT);
 		panelCliente.add(lblId);
 		
-		textField = new JTextField();
-		textField.setBounds(33, 37, 70, 19);
-		panelCliente.add(textField);
-		textField.setColumns(10);
+		textFieldIdCliente = new JTextField();
+		textFieldIdCliente.setBounds(33, 37, 70, 19);
+		panelCliente.add(textFieldIdCliente);
+		textFieldIdCliente.setColumns(10);
 		
 		JLabel lblNomeDoCliente = new JLabel("Nome do Cliente");
 		lblNomeDoCliente.setBounds(120, 18, 120, 15);
 		panelCliente.add(lblNomeDoCliente);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(120, 37, 430, 19);
-		panelCliente.add(textField_1);
-		textField_1.setColumns(10);
+		textFieldNomeCliente = new JTextField();
+		textFieldNomeCliente.setEditable(false);
+		textFieldNomeCliente.setBounds(120, 37, 430, 19);
+		panelCliente.add(textFieldNomeCliente);
+		textFieldNomeCliente.setColumns(10);
 		
 		JButton btnPesquisarCliente = new JButton("");
 		btnPesquisarCliente.setBounds(5, 37, 20, 19);
@@ -149,26 +177,36 @@ public class FrmVendas extends JFrame {
 		panelItens.setLayout(null);
 		
 		textFieldQtde = new JTextField();
-		textFieldQtde.setBounds(33, 37, 50, 19);
+		textFieldQtde.setBounds(5, 37, 50, 19);
 		panelItens.add(textFieldQtde);
 		textFieldQtde.setColumns(10);
 		
 		JLabel lblCdigo = new JLabel("Código");
-		lblCdigo.setBounds(120, 18, 50, 15);
+		lblCdigo.setBounds(95, 18, 50, 15);
 		panelItens.add(lblCdigo);
 		
 		textFieldCodigoProduto = new JTextField();
-		textFieldCodigoProduto.setBounds(120, 37, 70, 19);
+		textFieldCodigoProduto.setBounds(95, 37, 70, 19);
 		panelItens.add(textFieldCodigoProduto);
 		textFieldCodigoProduto.setColumns(10);
 		
 		JLabel lblQuantidade = new JLabel("Qtde");
-		lblQuantidade.setBounds(33, 18, 90, 15);
+		lblQuantidade.setBounds(5, 18, 40, 15);
 		panelItens.add(lblQuantidade);
 		
 		JButton button = new JButton("");
-		button.setBounds(5, 37, 20, 19);
+		button.setBounds(70, 37, 20, 19);
 		panelItens.add(button);
+		
+		textFieldDescricao = new JTextField();
+		textFieldDescricao.setEditable(false);
+		textFieldDescricao.setBounds(180, 37, 370, 19);
+		panelItens.add(textFieldDescricao);
+		textFieldDescricao.setColumns(10);
+		
+		JLabel lblDescricao = new JLabel("Descrição");
+		lblDescricao.setBounds(180, 18, 70, 15);
+		panelItens.add(lblDescricao);
 		
 		JLabel lblStatus = new JLabel("Status");
 		lblStatus.setBounds(247, 0, 70, 15);
@@ -178,8 +216,8 @@ public class FrmVendas extends JFrame {
 		lblData.setBounds(437, 0, 70, 15);
 		contentPane.add(lblData);
 		
-		JLabel lblVendaNmero = new JLabel("Id Venda");
-		lblVendaNmero.setBounds(12, 0, 70, 15);
-		contentPane.add(lblVendaNmero);
+		JLabel lblIdVenda = new JLabel("Id Venda");
+		lblIdVenda.setBounds(12, 0, 70, 15);
+		contentPane.add(lblIdVenda);
 	}
 }

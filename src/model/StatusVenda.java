@@ -1,5 +1,5 @@
 package model;
 
 public enum StatusVenda {
-	FINALIZADA, CANCELADA
+	ABERTA, FINALIZADA, CANCELADA
 }

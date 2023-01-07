@@ -1,23 +1,32 @@
 package controller.helper;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
 
+import dao.ClientesDAO;
+import model.Cliente;
 import model.Item;
-import model.Produto;
+import model.StatusVenda;
 import model.Venda;
 import view.FrmVendas;
 
 public class VendasHelper {
 	private final FrmVendas frmVendas;
+	ClientesDAO clientesDAO;
 
 	public VendasHelper(FrmVendas frmVendas) {
 		this.frmVendas = frmVendas;
+		this.clientesDAO = new ClientesDAO();
 	}
 
 	public Venda getVenda() { // implementar instancia Venda pegando dados da tela
-		return new Venda(frmVendas.getTextFieldDescricao().getText(),
+		
+		Cliente cliente = clientesDAO.getCliente(Integer.parseInt(frmVendas.getTextFieldIdCliente().getText()));
+		
+		
+		return new Venda(cliente, new Date(), StatusVenda.ABERTA, 
 				Double.parseDouble(frmVendas.getTextFieldPreco().getText()));
 	}
 

@@ -11,6 +11,17 @@ public class Venda {
 	private StatusVenda statusVenda;
 	private List<Item> itens;
 	private Double totalVenda;
+	
+	
+
+	public Venda(Cliente cliente, Date dataVenda, StatusVenda statusVenda, List<Item> itens, Double totalVenda) {
+		super();
+		this.cliente = cliente;
+		this.dataVenda = dataVenda;
+		this.statusVenda = statusVenda;
+		this.itens = itens;
+		this.totalVenda = totalVenda;
+	}
 
 	public Long getId() {
 		return id;

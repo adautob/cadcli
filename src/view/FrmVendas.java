@@ -2,28 +2,24 @@ package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Rectangle;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.Box;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
+import model.Item;
 
 public class FrmVendas extends JFrame {
 
@@ -40,9 +36,25 @@ public class FrmVendas extends JFrame {
 	private JTextField textFieldCodigoProduto;
 	private JTextField textFieldQtde;
 	private JTextField textFieldDescricao;
+	
+	private List<Item> itensAux;
 
+	public void AddItemListaAux(Item item) {
+		itensAux.add(item);
+	}
 	
+	public void RemoveItemListaAux(Item item) {
+		itensAux.remove(item);
+	}
 	
+	public List<Item> getItensAux() {
+		return itensAux;
+	}
+
+	public void setItensAux(List<Item> itensAux) {
+		this.itensAux = itensAux;
+	}
+
 	public JTextField getTextFieldTotal() {
 		return textFieldTotal;
 	}
@@ -88,6 +100,7 @@ public class FrmVendas extends JFrame {
 	 */
 	@SuppressWarnings("serial")
 	public FrmVendas() {
+		itensAux = new ArrayList<>();  // lista auxiliar
 		setTitle("Venda");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

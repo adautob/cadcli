@@ -6,7 +6,14 @@ public class Item {
 	private Long id_produto;
 	private Integer quantidade;
 	private Double preco;
+	private Double total;
 	
+	public Double getTotal() {
+		return total;
+	}
+	public void setTotal(Double total) {
+		this.total = total;
+	}
 	public Long getId() {
 		return id;
 	}

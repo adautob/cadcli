@@ -32,6 +32,17 @@ public class ClientesDAO {
 		
 	}
 	
+	public Cliente getClienteById(Long id) { // resolver retorno do cliente por Id
+		Cliente c;
+		
+		for (Cliente cli : Banco.clientes) {
+			if (cli.getId() == id) c = cli else c = new ;
+		}
+		
+		return c;
+		
+	}
+	
 	public void updateCliente(int index, Cliente cliente) {
 		Banco.clientes.set(index, cliente);
 	}

@@ -6,11 +6,13 @@ public class Produto {
 	private Double preco;
 	
 	public Produto(String descricao, Double preco) {
-		super();
 		this.descricao = descricao;
 		this.preco = preco;
 	}
 	
+	public Produto() {
+	}
+
 	public Long getId() {
 		return id;
 	}

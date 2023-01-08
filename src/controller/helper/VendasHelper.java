@@ -24,9 +24,9 @@ public class VendasHelper {
 		this.produtosDAO = new ProdutosDAO();
 	}
 
-	public Venda getVenda() { // implementar instancia Venda pegando dados da tela
+	public Venda getVenda() {
 		
-		Cliente cliente = clientesDAO.getCliente(Integer.parseInt(frmVendas.getTextFieldIdCliente().getText()));
+		Cliente cliente = clientesDAO.getClienteById(Long.parseLong(frmVendas.getTextFieldIdCliente().getText()));
 		Double total = 0d;
 		
 		for (Item item: frmVendas.getItensAux()) {
@@ -52,10 +52,10 @@ public class VendasHelper {
 		
 		tm.setNumRows(0);
 		
-		for (Item item : itens) { // implementar codigo para preencher JTable com Itens da venda
+		for (Item item : itens) {
 			tm.addRow(new Object[] {
 					item.getId_produto(),
-					produtosDAO.getProduto(item.getId_produto()),
+					produtosDAO.getProdutoById(item.getId_produto()).getDescricao(),
 					item.getQuantidade(),
 					item.getPreco(),
 					item.getTotal()

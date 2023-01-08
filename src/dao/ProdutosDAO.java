@@ -32,6 +32,15 @@ public class ProdutosDAO {
 		
 	}
 	
+	public Produto getProdutoById(Long id) {
+		Produto produto = new Produto();
+		
+		for (Produto p : Banco.produtos) {
+			if (p.getId() == id) produto = p; 
+		}
+		return produto;
+	}
+	
 	public void updateProduto(int index, Produto produto) {
 		Banco.produtos.set(index, produto);
 	}

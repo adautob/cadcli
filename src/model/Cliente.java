@@ -9,6 +9,9 @@ public class Cliente {
 		return id;
 	}
 
+	public Cliente() {
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}

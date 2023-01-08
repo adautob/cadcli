@@ -32,11 +32,11 @@ public class ClientesDAO {
 		
 	}
 	
-	public Cliente getClienteById(Long id) { // resolver retorno do cliente por Id
-		Cliente c;
+	public Cliente getClienteById(Long id) {
+		Cliente c = new Cliente();
 		
 		for (Cliente cli : Banco.clientes) {
-			if (cli.getId() == id) c = cli else c = new ;
+			if (cli.getId() == id) c = cli;
 		}
 		
 		return c;

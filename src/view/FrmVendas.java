@@ -112,7 +112,7 @@ public class FrmVendas extends JFrame {
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBackground(UIManager.getColor("Button.focus"));
-		scrollPane.setBounds(2, 180, 580, 160);
+		scrollPane.setBounds(2, 180, 580, 155);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -232,5 +232,17 @@ public class FrmVendas extends JFrame {
 		JLabel lblIdVenda = new JLabel("Id Venda");
 		lblIdVenda.setBounds(12, 0, 70, 15);
 		contentPane.add(lblIdVenda);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(12, 340, 117, 25);
+		contentPane.add(btnSalvar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(139, 340, 117, 25);
+		contentPane.add(btnCancelar);
+		
+		JButton btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.setBounds(265, 340, 117, 25);
+		contentPane.add(btnFinalizar);
 	}
 }

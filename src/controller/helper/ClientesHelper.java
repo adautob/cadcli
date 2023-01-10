@@ -15,7 +15,7 @@ public class ClientesHelper {
 	}
 
 	public Cliente getCliente() {
-		return new Cliente(frmClientes.getTextFieldNome().getText(),
+		return new Cliente(null, frmClientes.getTextFieldNome().getText(),
 				frmClientes.getTextFieldEmail().getText(),
 				frmClientes.getTextFieldTelefone().getText(),
 				frmClientes.getTextFieldIdade().getText());

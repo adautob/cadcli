@@ -17,9 +17,13 @@ public class Banco {
 		clientes = new ArrayList<Cliente>();
 		produtos = new ArrayList<Produto>();
 		
-		Cliente c1 = new Cliente("Adauto", "adauto@email.com", "7384738743", "39");
+		Cliente c1 = new Cliente(1L, "Adauto", "adauto@email.com", "7384738743", "39");
+		Cliente c2 = new Cliente(2L, "Amanda", "amanda@email.com", "7384738743", "29");
+		Cliente c3 = new Cliente(3L, "Daniel", "daniel@email.com", "7384738743", "10");
 		
 		clientes.add(c1);
+		clientes.add(c2);
+		clientes.add(c3);
 		
 		Produto p1 = new Produto("Mouse", 25.0);
 		Produto p2 = new Produto("Teclado", 32.9);

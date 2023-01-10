@@ -78,5 +78,14 @@ public class VendasHelper {
 		frmVendas.getTextFieldQtde().setText(item.getQuantidade().toString());
 		frmVendas.getTextFieldCodigoProduto().setText(item.getId_produto().toString());
 	}
+
+	public Cliente getClienteById(Long id) {
+		return clientesDAO.getClienteById(id);
+	}
+
+	public void preencherCliente(String nome) {
+		frmVendas.getTextFieldNomeCliente().setText(nome);
+		
+	}
 }
 

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,9 +18,14 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
+import controller.VendasController;
 import model.Item;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class FrmVendas extends JFrame {
 
@@ -27,6 +33,8 @@ public class FrmVendas extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
 	private JTable table;
@@ -36,6 +44,8 @@ public class FrmVendas extends JFrame {
 	private JTextField textFieldCodigoProduto;
 	private JTextField textFieldQtde;
 	private JTextField textFieldDescricao;
+	
+	private VendasController vendasController;
 	
 	private List<Item> itensAux;
 
@@ -79,6 +89,7 @@ public class FrmVendas extends JFrame {
 		return table;
 	}
 	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -100,6 +111,7 @@ public class FrmVendas extends JFrame {
 	 */
 	@SuppressWarnings("serial")
 	public FrmVendas() {
+		vendasController = new VendasController(this);
 		itensAux = new ArrayList<>();  // lista auxiliar
 		setTitle("Venda");
 		setResizable(false);
@@ -165,7 +177,47 @@ public class FrmVendas extends JFrame {
 		panelCliente.add(lblId);
 		
 		textFieldIdCliente = new JTextField();
+		textFieldIdCliente.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres="0987654321";// lista de caracters que não devem ser aceitos
+				if(!caracteres.contains(e.getKeyChar()+"")){// se o caracter que gerou o
+				//evento estiver não estiver na lista
+				e.consume();//aciona esse propriedade para eliminar a ação do evento
+			} 
+		}});
+		
+		textFieldIdCliente.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!getTextFieldIdCliente().getText().equals(""))
+					vendasController.buscarCliente(Long.parseLong(getTextFieldIdCliente().getText()));
+					else getTextFieldNomeCliente().setText("");	
+				
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				if (!getTextFieldIdCliente().getText().equals(""))
+					vendasController.buscarCliente(Long.parseLong(getTextFieldIdCliente().getText()));
+					else getTextFieldNomeCliente().setText("");	
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				if (!getTextFieldIdCliente().getText().equals(""))
+					vendasController.buscarCliente(Long.parseLong(getTextFieldIdCliente().getText()));
+					else getTextFieldNomeCliente().setText("");	
+				
+			}
+			
+			
+		});
+		
 		textFieldIdCliente.setBounds(33, 37, 70, 19);
+			
 		panelCliente.add(textFieldIdCliente);
 		textFieldIdCliente.setColumns(10);
 		

@@ -22,7 +22,8 @@ public class Cliente {
 	private String idade;
 	private List<Venda> vendas;
 	
-	public Cliente(String nome, String email, String telefone, String idade) {
+	public Cliente(Long id, String nome, String email, String telefone, String idade) {
+		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;

@@ -2,9 +2,9 @@ package controller;
 
 import java.util.ArrayList;
 
-import controller.helper.ProdutosHelper;
 import controller.helper.VendasHelper;
 import dao.ProdutosDAO;
+import model.Cliente;
 import model.Produto;
 import view.FrmVendas;
 
@@ -28,10 +28,10 @@ public class VendasController {
 	}
 
 	public void preencherCampos() {
-		vendasHelper.preencherCampos();
+		//vendasHelper.preencherCampos();
 	}
 
-	public void salvarProduto() {
+	public void salvarProduto() {/*
 		if (!produtosHelper.temProdutoSelecionado()) {
 			Produto produto = produtosHelper.getProduto();
 			produtosDAO.AdicionarProduto(produto);
@@ -47,22 +47,23 @@ public class VendasController {
 				System.out.println("Erro ao atualizar produto");
 			}
 
-		}
+		}*/
 
 	}
 
-	public void atualizarTabela() {
+	public void atualizarTabela() {/*
 		ProdutosDAO produtoDAO = new ProdutosDAO();
 		ArrayList<Produto> produtos = produtoDAO.selectAll();
-		this.produtosHelper.preencherTabela(produtos);
+		this.produtosHelper.preencherTabela(produtos);*/
 	}
 
+	/*
 	public Produto getProduto() {
 		return produtosDAO.getProduto(this.produtosHelper.getProdutoSelecionado());
 
-	}
+	}*/
 
-	public void removerSelecionado() {
+	public void removerSelecionado() {/*
 		System.out.println(produtosHelper.temProdutoSelecionado());
 
 		if (produtosHelper.temProdutoSelecionado()) {
@@ -74,8 +75,15 @@ public class VendasController {
 				System.out.println("Erro ao remover produto");
 			}
 
-		}
+		}*/
 
+	}
+
+	public void buscarCliente(Long id) {
+		
+		Cliente cliente = vendasHelper.getClienteById(id);
+		vendasHelper.preencherCliente(cliente.getNome());
+		
 	}
 
 }

@@ -9,6 +9,7 @@ import dao.ClientesDAO;
 import dao.ProdutosDAO;
 import model.Cliente;
 import model.Item;
+import model.Produto;
 import model.StatusVenda;
 import model.Venda;
 import view.FrmVendas;
@@ -85,6 +86,15 @@ public class VendasHelper {
 
 	public void preencherCliente(String nome) {
 		frmVendas.getTextFieldNomeCliente().setText(nome);
+		
+	}
+
+	public Produto getProdutoById(long id) {
+		return produtosDAO.getProdutoById(id);
+	}
+
+	public void preencherDescricaoProduto(String descricao) {
+		frmVendas.getTextFieldDescricao().setText(descricao);
 		
 	}
 }

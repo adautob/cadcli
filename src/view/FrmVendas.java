@@ -2,9 +2,10 @@ package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,8 +25,6 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.VendasController;
 import model.Item;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class FrmVendas extends JFrame {
 
@@ -79,6 +78,10 @@ public class FrmVendas extends JFrame {
 
 	public JTextField getTextFieldCodigoProduto() {
 		return textFieldCodigoProduto;
+	}
+	
+	public JTextField getTextFieldDescricao() {
+		return textFieldDescricao;
 	}
 
 	public JTextField getTextFieldQtde() {
@@ -184,8 +187,16 @@ public class FrmVendas extends JFrame {
 				if(!caracteres.contains(e.getKeyChar()+"")){// se o caracter que gerou o
 				//evento estiver não estiver na lista
 				e.consume();//aciona esse propriedade para eliminar a ação do evento
-			} 
-		}});
+				} 
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					System.out.println("KeyPressed Enter");
+				}
+			}
+				
+		});
 		
 		textFieldIdCliente.getDocument().addDocumentListener(new DocumentListener() {
 
@@ -251,6 +262,54 @@ public class FrmVendas extends JFrame {
 		panelItens.add(lblCdigo);
 		
 		textFieldCodigoProduto = new JTextField();
+		
+		textFieldCodigoProduto.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres="0987654321";// lista de caracters que não devem ser aceitos
+				if(!caracteres.contains(e.getKeyChar()+"")){// se o caracter que gerou o
+				//evento estiver não estiver na lista
+				e.consume();//aciona esse propriedade para eliminar a ação do evento
+				} 
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					System.out.println("KeyPressed Enter");
+				}
+			}
+				
+		});
+		
+		textFieldCodigoProduto.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!getTextFieldCodigoProduto().getText().equals(""))
+					vendasController.buscarProduto(Long.parseLong(getTextFieldCodigoProduto().getText()));
+					else getTextFieldDescricao().setText("");	
+				
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				if (!getTextFieldCodigoProduto().getText().equals(""))
+					vendasController.buscarProduto(Long.parseLong(getTextFieldCodigoProduto().getText()));
+					else getTextFieldDescricao().setText("");	
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				if (!getTextFieldCodigoProduto().getText().equals(""))
+					vendasController.buscarProduto(Long.parseLong(getTextFieldCodigoProduto().getText()));
+					else getTextFieldDescricao().setText("");	
+				
+			}
+			
+			
+		});
+		
 		textFieldCodigoProduto.setBounds(95, 37, 70, 19);
 		panelItens.add(textFieldCodigoProduto);
 		textFieldCodigoProduto.setColumns(10);
@@ -297,4 +356,5 @@ public class FrmVendas extends JFrame {
 		btnFinalizar.setBounds(265, 340, 117, 25);
 		contentPane.add(btnFinalizar);
 	}
+
 }

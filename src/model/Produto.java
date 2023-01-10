@@ -5,7 +5,8 @@ public class Produto {
 	private String descricao;
 	private Double preco;
 	
-	public Produto(String descricao, Double preco) {
+	public Produto(Long id, String descricao, Double preco) {
+		this.id = id;
 		this.descricao = descricao;
 		this.preco = preco;
 	}

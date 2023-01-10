@@ -15,7 +15,7 @@ public class ProdutosHelper {
 	}
 
 	public Produto getProduto() {
-		return new Produto(frmProdutos.getTextFieldDescricao().getText(),
+		return new Produto(null, frmProdutos.getTextFieldDescricao().getText(),
 				Double.parseDouble(frmProdutos.getTextFieldPreco().getText()));
 	}
 

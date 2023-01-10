@@ -48,7 +48,7 @@ public class Sistema extends JFrame {
 		setTitle("Sistema");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 800, 600);
 		TelaController  telacontroller = new TelaController(this);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -92,7 +92,7 @@ public class Sistema extends JFrame {
 		
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(e -> telacontroller.FecharSistema());
-		btnSair.setBounds(556, 358, 117, 25);
+		btnSair.setBounds(645, 508, 117, 25);
 		contentPane.add(btnSair);
 	}
 }

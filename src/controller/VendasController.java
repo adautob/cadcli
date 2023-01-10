@@ -86,4 +86,10 @@ public class VendasController {
 		
 	}
 
+	public void buscarProduto(long id) {
+		Produto produto = vendasHelper.getProdutoById(id);
+		vendasHelper.preencherDescricaoProduto(produto.getDescricao());
+		
+	}
+
 }

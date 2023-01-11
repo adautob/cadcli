@@ -25,8 +25,6 @@ public class ProdutosHelper {
 		frmProdutos.getTextFieldDescricao().requestFocus();
 	}
 
-	public void preencherTabela() {
-	}
 
 	public void preencherTabela(ArrayList<Produto> produtos) {
 		DefaultTableModel tm = (DefaultTableModel)frmProdutos.getTable().getModel();

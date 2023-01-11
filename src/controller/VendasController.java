@@ -1,10 +1,9 @@
 package controller;
 
-import java.util.ArrayList;
-
 import controller.helper.VendasHelper;
 import dao.ProdutosDAO;
 import model.Cliente;
+import model.Item;
 import model.Produto;
 import view.FrmVendas;
 
@@ -23,9 +22,6 @@ public class VendasController {
 		frmVendas.setVisible(false);
 	}
 
-	public void limparCampos() {
-		vendasHelper.limparCampos();
-	}
 
 	public void preencherCampos() {
 		//vendasHelper.preencherCampos();
@@ -90,6 +86,16 @@ public class VendasController {
 		Produto produto = vendasHelper.getProdutoById(id);
 		vendasHelper.preencherDescricaoProduto(produto.getDescricao());
 		
+	}
+
+	public void adicionarItem(long id, Integer qtde) {
+		Produto produto = produtosDAO.getProdutoById(id);
+		Double total = produto.getPreco()*qtde;
+		Item item = new Item(null, produto.getId(), qtde, produto.getPreco(), total);
+		vendasHelper.AdicionarNaListaAuxiliar(item);
+		vendasHelper.preencherTabela(frmVendas.getItensAux());
+		vendasHelper.limparCamposItens();
+		vendasHelper.atualizarTotalItens();
 	}
 
 }

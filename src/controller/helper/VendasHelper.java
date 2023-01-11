@@ -1,7 +1,7 @@
 package controller.helper;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +18,7 @@ public class VendasHelper {
 	private final FrmVendas frmVendas;
 	ClientesDAO clientesDAO;
 	ProdutosDAO produtosDAO;
+	
 
 	public VendasHelper(FrmVendas frmVendas) {
 		this.frmVendas = frmVendas;
@@ -38,9 +39,11 @@ public class VendasHelper {
 		return new Venda(cliente, new Date(), StatusVenda.ABERTA, frmVendas.getItensAux(), total);
 	}
 
-	public void limparCampos() {
-		frmVendas.getTextFieldIdCliente().setText("");
-		frmVendas.getTextFieldIdCliente().requestFocus();
+	public void limparCamposItens() {
+		frmVendas.getTextFieldQtde().setText("1");
+		frmVendas.getTextFieldCodigoProduto().setText("");
+		frmVendas.getTextFieldDescricao().setText("");
+		frmVendas.getTextFieldCodigoProduto().requestFocus();
 	}
 
 	
@@ -48,7 +51,7 @@ public class VendasHelper {
 		frmVendas.AddItemListaAux(item);
 	}
 	
-	public void preencherTabela(ArrayList<Item> itens) {
+	public void preencherTabela(List<Item> itens) {
 		DefaultTableModel tm = (DefaultTableModel)frmVendas.getTable().getModel();
 		
 		tm.setNumRows(0);
@@ -95,6 +98,17 @@ public class VendasHelper {
 
 	public void preencherDescricaoProduto(String descricao) {
 		frmVendas.getTextFieldDescricao().setText(descricao);
+		
+	}
+
+	public void atualizarTotalItens() {
+		Double total = 0D;
+		for (Item i : frmVendas.getItensAux()) {
+			total += i.getTotal();
+		}
+		
+		frmVendas.getTextFieldTotal().setText(""+total);
+		
 		
 	}
 }

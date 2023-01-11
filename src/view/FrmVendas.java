@@ -24,6 +24,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.VendasController;
+import model.Cliente;
 import model.Item;
 
 public class FrmVendas extends JFrame {
@@ -49,6 +50,15 @@ public class FrmVendas extends JFrame {
 	private List<Item> itensAux;
 
 	public void AddItemListaAux(Item item) {
+		
+		// código para incrementar o ID, pois este não será fornecido pelo usuário
+		Long idMaior = 0L;
+		for (Item i : getItensAux()) {
+			if (i.getId() > idMaior) idMaior = i.getId();
+		}
+
+		item.setId(++idMaior);
+		
 		itensAux.add(item);
 	}
 	
@@ -115,7 +125,7 @@ public class FrmVendas extends JFrame {
 	@SuppressWarnings("serial")
 	public FrmVendas() {
 		vendasController = new VendasController(this);
-		itensAux = new ArrayList<>();  // lista auxiliar
+		itensAux = new ArrayList<Item>();  // lista auxiliar
 		setTitle("Venda");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -189,13 +199,6 @@ public class FrmVendas extends JFrame {
 				e.consume();//aciona esse propriedade para eliminar a ação do evento
 				} 
 			}
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode()==KeyEvent.VK_ENTER){
-					System.out.println("KeyPressed Enter");
-				}
-			}
-				
 		});
 		
 		textFieldIdCliente.getDocument().addDocumentListener(new DocumentListener() {
@@ -253,6 +256,7 @@ public class FrmVendas extends JFrame {
 		panelItens.setLayout(null);
 		
 		textFieldQtde = new JTextField();
+		textFieldQtde.setText("1");
 		textFieldQtde.setBounds(5, 37, 50, 19);
 		panelItens.add(textFieldQtde);
 		textFieldQtde.setColumns(10);
@@ -276,6 +280,9 @@ public class FrmVendas extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER){
 					System.out.println("KeyPressed Enter");
+					if (!getTextFieldDescricao().getText().equals(""))
+							vendasController.adicionarItem(Long.parseLong(getTextFieldCodigoProduto().getText()),
+									Integer.parseInt(getTextFieldQtde().getText()));
 				}
 			}
 				

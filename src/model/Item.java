@@ -8,6 +8,17 @@ public class Item {
 	private Double preco;
 	private Double total;
 	
+	
+	
+	public Item(Long id, Long id_produto, Integer quantidade, Double preco, Double total) {
+		super();
+		this.id = id;
+		this.id_produto = id_produto;
+		this.quantidade = quantidade;
+		this.preco = preco;
+		this.total = total;
+	}
+	
 	public Double getTotal() {
 		return total;
 	}

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.VendasController;
-import model.Cliente;
 import model.Item;
 
 public class FrmVendas extends JFrame {
@@ -143,8 +143,6 @@ public class FrmVendas extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
 			},
 			new String[] {
 				"C\u00F3digo", "Descri\u00E7\u00E3o", "Qtde", "Pre\u00E7o", "Total"
@@ -157,13 +155,18 @@ public class FrmVendas extends JFrame {
 				return columnTypes[columnIndex];
 			}
 		});
+		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(60);
 		table.getColumnModel().getColumn(0).setMinWidth(60);
+		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(250);
 		table.getColumnModel().getColumn(1).setMinWidth(250);
+		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(50);
 		table.getColumnModel().getColumn(2).setMinWidth(50);
+		table.getColumnModel().getColumn(3).setResizable(false);
 		table.getColumnModel().getColumn(3).setMinWidth(75);
+		table.getColumnModel().getColumn(4).setResizable(false);
 		table.getColumnModel().getColumn(4).setPreferredWidth(90);
 		table.getColumnModel().getColumn(4).setMinWidth(90);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));

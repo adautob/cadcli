@@ -110,7 +110,7 @@ public class FrmProdutos extends JFrame {
 				new String[] { "Descri\u00E7\u00E3o", "Pre\u00E7o" }));
 
 		JLabel lblDescris = new JLabel("Descrição");
-		lblDescris.setBounds(12, 49, 70, 15);
+		lblDescris.setBounds(12, 61, 70, 15);
 		contentPane.add(lblDescris);
 
 		JLabel lblPreo = new JLabel("Preço");
@@ -118,7 +118,7 @@ public class FrmProdutos extends JFrame {
 		contentPane.add(lblPreo);
 
 		textFieldDescricao = new JTextField();
-		textFieldDescricao.setBounds(86, 47, 412, 19);
+		textFieldDescricao.setBounds(86, 59, 412, 19);
 		contentPane.add(textFieldDescricao);
 		textFieldDescricao.setColumns(10);
 
@@ -129,7 +129,7 @@ public class FrmProdutos extends JFrame {
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addActionListener(e -> produtosController.limparCampos());
-		btnNovo.setBounds(248, 78, 117, 25);
+		btnNovo.setBounds(12, 105, 117, 25);
 		contentPane.add(btnNovo);
 		
 		JButton btnSair = new JButton("Sair");
@@ -139,12 +139,12 @@ public class FrmProdutos extends JFrame {
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(e ->produtosController.salvarProduto());
-		btnSalvar.setBounds(248, 105, 117, 25);
+		btnSalvar.setBounds(259, 105, 117, 25);
 		contentPane.add(btnSalvar);
 		
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(e -> produtosController.removerSelecionado());
-		btnRemover.setBounds(377, 78, 117, 25);
+		btnRemover.setBounds(130, 105, 117, 25);
 		contentPane.add(btnRemover);
 		table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		table.getColumnModel().getColumn(0).setMinWidth(200);

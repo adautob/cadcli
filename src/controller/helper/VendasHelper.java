@@ -1,5 +1,6 @@
 package controller.helper;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -106,7 +107,10 @@ public class VendasHelper {
 		for (Item i : frmVendas.getItensAux()) {
 			total += i.getTotal();
 		}
-		frmVendas.getTextFieldTotal().setText("R$ "+Math.round(total*100.0)/100.0);
+		
+		String valorFormatado = new DecimalFormat(" R$ #,##0.00").format(total);
+		System.out.println( valorFormatado );
+		frmVendas.getTextFieldTotal().setText(valorFormatado);
 		
 		
 	}

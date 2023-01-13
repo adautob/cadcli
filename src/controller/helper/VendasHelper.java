@@ -1,6 +1,5 @@
 package controller.helper;
 
-import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -107,10 +106,22 @@ public class VendasHelper {
 		for (Item i : frmVendas.getItensAux()) {
 			total += i.getTotal();
 		}
-		
-		frmVendas.getTextFieldTotal().setText(""+total);
+		frmVendas.getTextFieldTotal().setText("R$ "+Math.round(total*100.0)/100.0);
 		
 		
 	}
+
+	public void atualizarQtdePreco(int row, int column, Object newValue) {
+		Item item = frmVendas.getItensAux().get(row);
+		if (column == 2) item.setQuantidade((Integer) newValue);
+		else if (column == 3) item.setPreco((Double) newValue);
+		item.setTotal(item.getQuantidade()*item.getPreco());
+		frmVendas.getItensAux().set(row, item);
+		this.preencherTabela(frmVendas.getItensAux());
+		this.atualizarTotalItens();
+		frmVendas.getTextFieldCodigoProduto().requestFocus();
+		
+	}
+
 }
 

@@ -2,11 +2,14 @@ package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import controller.VendasController;
 import model.Item;
 import util.NumberRenderer;
+import util.TableCellListener;
 
 public class FrmVendas extends JFrame {
 
@@ -188,6 +192,22 @@ public class FrmVendas extends JFrame {
 
 
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		
+		Action action = new AbstractAction()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        TableCellListener tcl = (TableCellListener)e.getSource();
+		        System.out.println("Row   : " + tcl.getRow());
+		        System.out.println("Column: " + tcl.getColumn());
+		        System.out.println("Old   : " + tcl.getOldValue());
+		        System.out.println("New   : " + tcl.getNewValue());
+				vendasController.atualizarQtdePreco(tcl.getRow(), tcl.getColumn(), tcl.getNewValue());
+			}
+		};
+
+		new TableCellListener(table, action);
+		
 		scrollPane.setViewportView(table);
 		
 		JLabel lblTotal = new JLabel("Total");
@@ -195,6 +215,7 @@ public class FrmVendas extends JFrame {
 		contentPane.add(lblTotal);
 		
 		textFieldTotal = new JTextField();
+		textFieldTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		textFieldTotal.setBounds(485, 348, 95, 19);
 		contentPane.add(textFieldTotal);
 		textFieldTotal.setColumns(10);

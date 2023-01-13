@@ -98,4 +98,10 @@ public class VendasController {
 		vendasHelper.atualizarTotalItens();
 	}
 
+	public void atualizarQtdePreco(int row, int column, Object newValue) {
+		vendasHelper.atualizarQtdePreco(row, column, newValue);
+		
+	}
+
+
 }

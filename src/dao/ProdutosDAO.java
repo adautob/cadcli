@@ -13,6 +13,11 @@ public class ProdutosDAO {
 	}
 	
 	public void AdicionarProduto(Produto produto) {
+		Long max = 0L;
+		for (Produto p : Banco.produtos) {
+			if (p.getId()>max) max = p.getId();
+		}
+		produto.setId(++max);
 		Banco.produtos.add(produto);
 		System.out.println("Produto adicionado: "+produto);
 		System.out.println(Banco.produtos);

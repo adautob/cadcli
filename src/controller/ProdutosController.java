@@ -35,13 +35,14 @@ public class ProdutosController {
 			Produto produto = produtosHelper.getProduto();
 			produtosDAO.AdicionarProduto(produto);
 			this.atualizarTabela();
-			produtosHelper.limparCampos();
+			this.limparCampos();
 		} else {
 			try {
 				Produto produto = produtosHelper.getProduto();
 				produtosDAO.updateProduto(this.produtosHelper.getProdutoSelecionado(), produto);
 				System.out.println("Produto " + produto.getDescricao() + " atualizado com sucesso");
 				this.atualizarTabela();
+				this.limparCampos();
 			} catch (Exception e) {
 				System.out.println("Erro ao atualizar produto");
 			}
@@ -69,6 +70,7 @@ public class ProdutosController {
 			if (produtosDAO.RemoverProduto(produto)) {
 				System.out.println("Produto " + produto.getDescricao() + " removido com sucesso");
 				this.atualizarTabela();
+				this.limparCampos();
 			} else {
 				System.out.println("Erro ao remover produto");
 			}

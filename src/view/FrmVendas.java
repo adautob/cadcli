@@ -171,6 +171,7 @@ public class FrmVendas extends JFrame {
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		table.getTableHeader().setReorderingAllowed(false);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(60);
 		table.getColumnModel().getColumn(0).setMinWidth(60);

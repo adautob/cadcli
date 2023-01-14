@@ -43,6 +43,10 @@ public class FrmProdutos extends JFrame {
 	public JTextField getTextFieldPreco() {
 		return textFieldPreco;
 	}
+	
+	public JTextField getTextFieldCodigo() {
+		return textFieldCodigo;
+	}
 
 	/**
 	 * Launch the application.
@@ -89,6 +93,7 @@ public class FrmProdutos extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
+		table.getTableHeader().setReorderingAllowed(false);
 		table.setShowHorizontalLines(false);
 		table.setName("");
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -114,24 +119,14 @@ public class FrmProdutos extends JFrame {
 			new String[] {
 				"C\u00F3digo", "Descri\u00E7\u00E3o", "Pre\u00E7o"
 			}
-		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] {
-				Integer.class, Object.class, Object.class
-			};
-			@SuppressWarnings({ "rawtypes", "unchecked" })
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		));
+		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(0).setMaxWidth(50);
+		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		table.getColumnModel().getColumn(1).setMinWidth(200);
+		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(50);
 		table.getColumnModel().getColumn(2).setMinWidth(50);
 
@@ -178,6 +173,7 @@ public class FrmProdutos extends JFrame {
 		contentPane.add(lblCdigo);
 		
 		textFieldCodigo = new JTextField();
+		textFieldCodigo.setEditable(false);
 		textFieldCodigo.setBounds(86, 28, 114, 19);
 		contentPane.add(textFieldCodigo);
 		textFieldCodigo.setColumns(10);

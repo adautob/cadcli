@@ -95,6 +95,7 @@ public class FrmClientes extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		table.getTableHeader().setReorderingAllowed(false);
 		table.setShowHorizontalLines(false);
 		table.setName("");
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));

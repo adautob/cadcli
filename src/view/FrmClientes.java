@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -17,7 +18,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.ClientesController;
-import javax.swing.JScrollPane;
 
 public class FrmClientes extends JFrame {
 
@@ -31,6 +31,7 @@ public class FrmClientes extends JFrame {
 	private JTable table;
 	private JTextField textFieldEmail;
 	private JTextField textFieldTelefone;
+	private JTextField textFieldId;
 
 
 
@@ -42,7 +43,7 @@ public class FrmClientes extends JFrame {
 		ClientesController clientescontroller = new ClientesController(this);
 		setTitle("Cadastro de Clientes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 650, 425);
+		setBounds(100, 100, 565, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,40 +57,40 @@ public class FrmClientes extends JFrame {
 		JButton btnNewButton = new JButton("Sair");
 		
 		btnNewButton.addActionListener(e -> clientescontroller.fecharTela()); // actionlistener usando lambda
-		btnNewButton.setBounds(349, 135, 117, 25);
+		btnNewButton.setBounds(349, 166, 117, 25);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(12, 39, 70, 15);
+		lblNome.setBounds(12, 82, 70, 15);
 		contentPane.add(lblNome);
 		
 		JLabel lblIdade = new JLabel("Idade:");
-		lblIdade.setBounds(349, 39, 70, 15);
+		lblIdade.setBounds(349, 82, 70, 15);
 		contentPane.add(lblIdade);
 		
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(12, 52, 285, 19);
+		textFieldNome.setBounds(12, 95, 285, 19);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
 		textFieldIdade = new JTextField();
-		textFieldIdade.setBounds(349, 52, 117, 19);
+		textFieldIdade.setBounds(349, 95, 117, 19);
 		contentPane.add(textFieldIdade);
 		textFieldIdade.setColumns(10);
 		
 		JButton btnSalvar = new JButton("Salvar");
 
 		btnSalvar.addActionListener(e -> clientescontroller.salvarCliente());
-		btnSalvar.setBounds(12, 135, 117, 25);
+		btnSalvar.setBounds(12, 166, 117, 25);
 		contentPane.add(btnSalvar);
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addActionListener(e -> clientescontroller.limparCampos());
-		btnNovo.setBounds(159, 135, 117, 25);
+		btnNovo.setBounds(159, 166, 117, 25);
 		contentPane.add(btnNovo);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 172, 651, 145);
+		scrollPane.setBounds(12, 203, 536, 145);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -117,46 +118,82 @@ public class FrmClientes extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Nome", "Email", "Telefone", "Idade"
+				"ID", "Nome", "Email", "Telefone", "Idade"
 			}
-		));
+		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] {
+				Integer.class, Object.class, Object.class, Object.class, Object.class
+			};
+			@SuppressWarnings({ "rawtypes", "unchecked" })
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.getColumnModel().getColumn(0).setMaxWidth(50);
+		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+		table.getColumnModel().getColumn(1).setMaxWidth(150);
+		table.getColumnModel().getColumn(2).setPreferredWidth(150);
+		table.getColumnModel().getColumn(2).setMaxWidth(150);
+		table.getColumnModel().getColumn(3).setPreferredWidth(100);
+		table.getColumnModel().getColumn(3).setMaxWidth(100);
+		table.getColumnModel().getColumn(4).setPreferredWidth(50);
+		table.getColumnModel().getColumn(4).setMaxWidth(50);
 		
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(e -> clientescontroller.removerSelecionado());
-		btnRemover.setBounds(12, 329, 117, 25);
+		btnRemover.setBounds(12, 360, 117, 25);
 		contentPane.add(btnRemover);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(12, 92, 285, 19);
+		textFieldEmail.setBounds(12, 135, 285, 19);
 		contentPane.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
 		textFieldTelefone = new JTextField();
-		textFieldTelefone.setBounds(302, 92, 164, 19);
+		textFieldTelefone.setBounds(302, 135, 164, 19);
 		contentPane.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(12, 76, 70, 15);
+		lblEmail.setBounds(12, 119, 70, 15);
 		contentPane.add(lblEmail);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
-		lblTelefone.setBounds(304, 76, 70, 15);
+		lblTelefone.setBounds(304, 119, 70, 15);
 		contentPane.add(lblTelefone);
-		table.getColumnModel().getColumn(0).setResizable(true);
-		table.getColumnModel().getColumn(0).setPreferredWidth(150);
-		table.getColumnModel().getColumn(0).setMaxWidth(150);
-		table.getColumnModel().getColumn(1).setResizable(true);
-		table.getColumnModel().getColumn(1).setPreferredWidth(150);
-		table.getColumnModel().getColumn(1).setMaxWidth(150);
-		table.getColumnModel().getColumn(2).setResizable(true);
-		table.getColumnModel().getColumn(2).setPreferredWidth(100);
-		table.getColumnModel().getColumn(2).setMaxWidth(100);
-		table.getColumnModel().getColumn(3).setResizable(true);
-		table.getColumnModel().getColumn(3).setPreferredWidth(50);
-		table.getColumnModel().getColumn(3).setMaxWidth(50);
+		
+		JLabel lblId = new JLabel("Id");
+		lblId.setBounds(12, 54, 70, 15);
+		contentPane.add(lblId);
+		
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setBounds(241, 54, 70, 15);
+		contentPane.add(lblStatus);
+		
+		textFieldId = new JTextField();
+		textFieldId.setEditable(false);
+		textFieldId.setBounds(32, 51, 80, 19);
+		contentPane.add(textFieldId);
+		textFieldId.setColumns(10);
 		
 		clientescontroller.atualizarTabela();
+	}
+
+
+
+	public JTextField getTextFieldId() {
+		return textFieldId;
+	}
+
+
+
+	public void setTextFieldId(JTextField textFieldId) {
+		this.textFieldId = textFieldId;
 	}
 
 

@@ -42,6 +42,7 @@ public class ClientesController {
 				clientesDAO.updateCliente(this.clientesHelper.getClienteSelecionado(), cliente);
 				System.out.println("Cliente " + cliente.getNome() + " atualizado com sucesso");
 				this.atualizarTabela();
+				clientesHelper.limparCampos();
 			} catch (Exception e) {
 				System.out.println("Erro ao atualizar cliente");
 			}
@@ -69,6 +70,7 @@ public class ClientesController {
 			if (clientesDAO.RemoverCliente(cliente)) {
 				System.out.println("Cliente " + cliente.getNome() + " removido com sucesso");
 				this.atualizarTabela();
+				this.limparCampos();
 			} else {
 				System.out.println("Erro ao remover cliente");
 			}

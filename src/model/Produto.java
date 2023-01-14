@@ -4,6 +4,7 @@ public class Produto {
 	private Long id;
 	private String descricao;
 	private Double preco;
+	private Status status;
 	
 	public Produto(Long id, String descricao, Double preco) {
 		this.id = id;
@@ -31,6 +32,16 @@ public class Produto {
 	}
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}	
+	
+	
 
 }

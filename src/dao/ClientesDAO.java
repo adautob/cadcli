@@ -13,7 +13,13 @@ public class ClientesDAO {
 	}
 	
 	public void AdicionarCliente(Cliente cliente) {
+		Long max = 0L;
+		for (Cliente cli: Banco.clientes) {
+			if (cli.getId()>max) max = cli.getId();
+		}
+		cliente.setId(++max);
 		Banco.clientes.add(cliente);
+		
 		System.out.println("Cliente adicionado: "+cliente);
 		System.out.println(Banco.clientes);
 		

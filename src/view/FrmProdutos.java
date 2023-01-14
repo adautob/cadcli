@@ -30,6 +30,7 @@ public class FrmProdutos extends JFrame {
 	private JTable table;
 	private JTextField textFieldDescricao;
 	private JTextField textFieldPreco;
+	private JTextField textFieldCodigo;
 
 	public JTable getTable() {
 		return table;
@@ -106,8 +107,33 @@ public class FrmProdutos extends JFrame {
 
 			}
 		});
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null }, { null, null }, },
-				new String[] { "Descri\u00E7\u00E3o", "Pre\u00E7o" }));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+			},
+			new String[] {
+				"C\u00F3digo", "Descri\u00E7\u00E3o", "Pre\u00E7o"
+			}
+		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] {
+				Integer.class, Object.class, Object.class
+			};
+			@SuppressWarnings({ "rawtypes", "unchecked" })
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.getColumnModel().getColumn(0).setPreferredWidth(50);
+		table.getColumnModel().getColumn(0).setMaxWidth(50);
+		table.getColumnModel().getColumn(1).setPreferredWidth(200);
+		table.getColumnModel().getColumn(1).setMinWidth(200);
+		table.getColumnModel().getColumn(2).setPreferredWidth(50);
+		table.getColumnModel().getColumn(2).setMinWidth(50);
 
 		JLabel lblDescris = new JLabel("Descrição");
 		lblDescris.setBounds(12, 61, 70, 15);
@@ -146,10 +172,19 @@ public class FrmProdutos extends JFrame {
 		btnRemover.addActionListener(e -> produtosController.removerSelecionado());
 		btnRemover.setBounds(130, 105, 117, 25);
 		contentPane.add(btnRemover);
-		table.getColumnModel().getColumn(0).setPreferredWidth(200);
-		table.getColumnModel().getColumn(0).setMinWidth(200);
-		table.getColumnModel().getColumn(1).setPreferredWidth(50);
-		table.getColumnModel().getColumn(1).setMinWidth(50);
+		
+		JLabel lblCdigo = new JLabel("Código");
+		lblCdigo.setBounds(12, 28, 70, 15);
+		contentPane.add(lblCdigo);
+		
+		textFieldCodigo = new JTextField();
+		textFieldCodigo.setBounds(86, 28, 114, 19);
+		contentPane.add(textFieldCodigo);
+		textFieldCodigo.setColumns(10);
+		
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setBounds(298, 28, 70, 15);
+		contentPane.add(lblStatus);
 
 		produtosController.atualizarTabela();
 

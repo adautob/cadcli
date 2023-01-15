@@ -2,8 +2,10 @@ package view;
 
 
 import java.awt.Font;
+import java.text.ParseException;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 import controller.ClientesController;
 
@@ -32,18 +35,19 @@ public class FrmClientes extends JFrame {
 	private JTextField textFieldEmail;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldId;
+	private MaskFormatter maskTel;
 
 
 
 	/**
 	 * Create the frame.
 	 */
-	public FrmClientes() {
+	public FrmClientes(){
 		setResizable(false);
 		ClientesController clientescontroller = new ClientesController(this);
 		setTitle("Cadastro de Clientes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 565, 425);
+		setBounds(100, 100, 530, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,16 +69,16 @@ public class FrmClientes extends JFrame {
 		contentPane.add(lblNome);
 		
 		JLabel lblIdade = new JLabel("Idade:");
-		lblIdade.setBounds(349, 82, 70, 15);
+		lblIdade.setBounds(384, 82, 70, 15);
 		contentPane.add(lblIdade);
 		
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(12, 95, 285, 19);
+		textFieldNome.setBounds(12, 95, 350, 19);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
 		textFieldIdade = new JTextField();
-		textFieldIdade.setBounds(349, 95, 117, 19);
+		textFieldIdade.setBounds(384, 95, 50, 19);
 		contentPane.add(textFieldIdade);
 		textFieldIdade.setColumns(10);
 		
@@ -90,7 +94,7 @@ public class FrmClientes extends JFrame {
 		contentPane.add(btnNovo);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 203, 536, 145);
+		scrollPane.setBounds(12, 203, 503, 145);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -117,33 +121,34 @@ public class FrmClientes extends JFrame {
 		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null},
 			},
 			new String[] {
-				"ID", "Nome", "Email", "Telefone", "Idade"
+				"ID", "Nome", "Telefone"
 			}
 		) {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] {
-				Integer.class, Object.class, Object.class, Object.class, Object.class
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
 			};
-			@SuppressWarnings({ "rawtypes", "unchecked" })
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(0).setMaxWidth(50);
-		table.getColumnModel().getColumn(1).setPreferredWidth(150);
-		table.getColumnModel().getColumn(1).setMaxWidth(150);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(300);
+		table.getColumnModel().getColumn(1).setMinWidth(300);
+		table.getColumnModel().getColumn(1).setMaxWidth(300);
+		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(150);
+		table.getColumnModel().getColumn(2).setMinWidth(150);
 		table.getColumnModel().getColumn(2).setMaxWidth(150);
-		table.getColumnModel().getColumn(3).setPreferredWidth(100);
-		table.getColumnModel().getColumn(3).setMaxWidth(100);
-		table.getColumnModel().getColumn(4).setPreferredWidth(50);
-		table.getColumnModel().getColumn(4).setMaxWidth(50);
 		
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(e -> clientescontroller.removerSelecionado());
@@ -151,12 +156,20 @@ public class FrmClientes extends JFrame {
 		contentPane.add(btnRemover);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(12, 135, 285, 19);
+		textFieldEmail.setBounds(12, 135, 350, 19);
 		contentPane.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
-		textFieldTelefone = new JTextField();
-		textFieldTelefone.setBounds(302, 135, 164, 19);
+		maskTel = new MaskFormatter();
+		
+		try {
+			maskTel.setMask("(##) #####-####");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		textFieldTelefone = new JFormattedTextField(maskTel);
+		textFieldTelefone.setBounds(384, 135, 131, 19);
 		contentPane.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 		
@@ -165,7 +178,7 @@ public class FrmClientes extends JFrame {
 		contentPane.add(lblEmail);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
-		lblTelefone.setBounds(304, 119, 70, 15);
+		lblTelefone.setBounds(384, 119, 70, 15);
 		contentPane.add(lblTelefone);
 		
 		JLabel lblId = new JLabel("Id");
@@ -183,6 +196,18 @@ public class FrmClientes extends JFrame {
 		textFieldId.setColumns(10);
 		
 		clientescontroller.atualizarTabela();
+	}
+
+
+
+	public MaskFormatter getMaskTel() {
+		return maskTel;
+	}
+
+
+
+	public void setMaskTel(MaskFormatter maskTel) {
+		this.maskTel = maskTel;
 	}
 
 

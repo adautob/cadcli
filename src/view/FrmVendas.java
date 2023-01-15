@@ -31,6 +31,8 @@ import controller.VendasController;
 import model.Item;
 import util.NumberRenderer;
 import util.TableCellListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class FrmVendas extends JFrame {
 
@@ -154,9 +156,11 @@ public class FrmVendas extends JFrame {
 				"C\u00F3digo", "Descri\u00E7\u00E3o", "Qtde", "Pre\u00E7o", "Total"
 			}
 		) {
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
 				Integer.class, String.class, Integer.class, Double.class, Double.class
 			};
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
@@ -273,7 +277,7 @@ public class FrmVendas extends JFrame {
 			
 		});
 		
-		textFieldIdCliente.setBounds(33, 37, 70, 19);
+		textFieldIdCliente.setBounds(30, 37, 70, 19);
 			
 		panelCliente.add(textFieldIdCliente);
 		textFieldIdCliente.setColumns(10);
@@ -299,13 +303,20 @@ public class FrmVendas extends JFrame {
 		panelItens.setLayout(null);
 		
 		textFieldQtde = new JTextField();
+		textFieldQtde.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				textFieldQtde.setText("1");
+				textFieldQtde.selectAll();
+			}
+		});
 		textFieldQtde.setText("1");
-		textFieldQtde.setBounds(5, 37, 50, 19);
+		textFieldQtde.setBounds(130, 37, 35, 19);
 		panelItens.add(textFieldQtde);
 		textFieldQtde.setColumns(10);
 		
 		JLabel lblCdigo = new JLabel("Código");
-		lblCdigo.setBounds(95, 18, 50, 15);
+		lblCdigo.setBounds(30, 18, 50, 15);
 		panelItens.add(lblCdigo);
 		
 		textFieldCodigoProduto = new JTextField();
@@ -313,7 +324,7 @@ public class FrmVendas extends JFrame {
 		textFieldCodigoProduto.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				String caracteres="0987654321";// lista de caracters que não devem ser aceitos
+				String caracteres="0987654321";// lista de caracters que devem ser aceitos
 				if(!caracteres.contains(e.getKeyChar()+"")){// se o caracter que gerou o
 				//evento estiver não estiver na lista
 				e.consume();//aciona esse propriedade para eliminar a ação do evento
@@ -323,9 +334,14 @@ public class FrmVendas extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER){
 					System.out.println("KeyPressed Enter");
+					int qtde = 0;
+					
+					if (!getTextFieldQtde().getText().equals(""))
+						qtde = Integer.parseInt(getTextFieldQtde().getText());
+					else qtde = 1;
+					
 					if (!getTextFieldDescricao().getText().equals(""))
-							vendasController.adicionarItem(Long.parseLong(getTextFieldCodigoProduto().getText()),
-									Integer.parseInt(getTextFieldQtde().getText()));
+							vendasController.adicionarItem(Long.parseLong(getTextFieldCodigoProduto().getText()), qtde);
 				}
 			}
 				
@@ -360,16 +376,42 @@ public class FrmVendas extends JFrame {
 			
 		});
 		
-		textFieldCodigoProduto.setBounds(95, 37, 70, 19);
+		textFieldQtde.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres="0987654321";// lista de caracters que devem ser aceitos
+				if(!caracteres.contains(e.getKeyChar()+"")){// se o caracter que gerou o
+				//evento estiver não estiver na lista
+				e.consume();//aciona esse propriedade para eliminar a ação do evento
+				} 
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					System.out.println("KeyPressed Enter");
+					int qtde = 0;
+					
+					if (!getTextFieldQtde().getText().equals(""))
+						qtde = Integer.parseInt(getTextFieldQtde().getText());
+					else qtde = 1;
+					
+					if (!getTextFieldDescricao().getText().equals(""))
+							vendasController.adicionarItem(Long.parseLong(getTextFieldCodigoProduto().getText()), qtde);
+				}
+			}
+				
+		});
+		
+		textFieldCodigoProduto.setBounds(30, 37, 70, 19);
 		panelItens.add(textFieldCodigoProduto);
 		textFieldCodigoProduto.setColumns(10);
 		
 		JLabel lblQuantidade = new JLabel("Qtde");
-		lblQuantidade.setBounds(5, 18, 40, 15);
+		lblQuantidade.setBounds(130, 18, 35, 15);
 		panelItens.add(lblQuantidade);
 		
 		JButton button = new JButton("");
-		button.setBounds(70, 37, 20, 19);
+		button.setBounds(5, 37, 20, 19);
 		panelItens.add(button);
 		
 		textFieldDescricao = new JTextField();
@@ -381,6 +423,10 @@ public class FrmVendas extends JFrame {
 		JLabel lblDescricao = new JLabel("Descrição");
 		lblDescricao.setBounds(180, 18, 70, 15);
 		panelItens.add(lblDescricao);
+		
+		JLabel lblX = new JLabel("X");
+		lblX.setBounds(110, 39, 10, 15);
+		panelItens.add(lblX);
 		
 		JLabel lblStatus = new JLabel("Status");
 		lblStatus.setBounds(247, 0, 70, 15);
@@ -406,5 +452,4 @@ public class FrmVendas extends JFrame {
 		btnFinalizar.setBounds(265, 340, 117, 25);
 		contentPane.add(btnFinalizar);
 	}
-
 }

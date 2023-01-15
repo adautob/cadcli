@@ -45,9 +45,7 @@ public class ClientesHelper {
 			tm.addRow(new Object[] {
 					cliente.getId(),
 					cliente.getNome(),
-					cliente.getEmail(),
-					cliente.getTelefone(),
-					cliente.getIdade()					
+					cliente.getTelefone()
 			});
 			
 			

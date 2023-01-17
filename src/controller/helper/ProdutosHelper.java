@@ -1,5 +1,6 @@
 package controller.helper;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -60,7 +61,10 @@ public class ProdutosHelper {
 	public void preencherCampos(Produto produto) {
 		frmProdutos.getTextFieldCodigo().setText(produto.getId().toString());
 		frmProdutos.getTextFieldDescricao().setText(produto.getDescricao());
-		frmProdutos.getTextFieldPreco().setText(String.valueOf(produto.getPreco()));
+		
+		String valorFormatado = new DecimalFormat(" R$ #,##0.00").format(produto.getPreco());
+		
+		frmProdutos.getTextFieldPreco().setText(valorFormatado);
 	}
 }
 

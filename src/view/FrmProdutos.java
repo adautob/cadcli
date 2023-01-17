@@ -2,7 +2,10 @@ package view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,10 +18,11 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controller.ProdutosController;
-import javax.swing.JButton;
+import util.NumberRenderer;
 
 public class FrmProdutos extends JFrame {
 
@@ -43,7 +47,7 @@ public class FrmProdutos extends JFrame {
 	public JTextField getTextFieldPreco() {
 		return textFieldPreco;
 	}
-	
+
 	public JTextField getTextFieldCodigo() {
 		return textFieldCodigo;
 	}
@@ -112,23 +116,36 @@ public class FrmProdutos extends JFrame {
 
 			}
 		});
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-			},
-			new String[] {
-				"C\u00F3digo", "Descri\u00E7\u00E3o", "Pre\u00E7o"
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
+				new String[] { "C\u00F3digo", "Descri\u00E7\u00E3o", "Pre\u00E7o" }) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] { Integer.class, String.class, Double.class };
+
+			@SuppressWarnings({ "rawtypes", "unchecked" })
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
 			}
-		));
+		});
+
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(0).setMaxWidth(50);
+		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		table.getColumnModel().getColumn(1).setMinWidth(200);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(50);
 		table.getColumnModel().getColumn(2).setMinWidth(50);
+		table.getColumnModel().getColumn(2).setCellRenderer(NumberRenderer.getCurrencyRenderer());
+
 
 		JLabel lblDescris = new JLabel("Descrição");
 		lblDescris.setBounds(12, 61, 70, 15);
@@ -144,40 +161,52 @@ public class FrmProdutos extends JFrame {
 		textFieldDescricao.setColumns(10);
 
 		textFieldPreco = new JTextField();
+		
+		textFieldPreco.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres="0987654321.";// lista de caracters que devem ser aceitos
+				if(!caracteres.contains(e.getKeyChar()+"")){// se o caracter que gerou o
+				//evento estiver não estiver na lista
+				e.consume();//aciona esse propriedade para eliminar a ação do evento
+				} 
+			}
+		});
+		
 		textFieldPreco.setBounds(86, 86, 114, 19);
 		contentPane.add(textFieldPreco);
 		textFieldPreco.setColumns(10);
-		
+
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addActionListener(e -> produtosController.limparCampos());
 		btnNovo.setBounds(12, 105, 117, 25);
 		contentPane.add(btnNovo);
-		
+
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(e -> produtosController.fecharTela());
 		btnSair.setBounds(377, 105, 117, 25);
 		contentPane.add(btnSair);
-		
+
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addActionListener(e ->produtosController.salvarProduto());
+		btnSalvar.addActionListener(e -> produtosController.salvarProduto());
 		btnSalvar.setBounds(259, 105, 117, 25);
 		contentPane.add(btnSalvar);
-		
+
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(e -> produtosController.removerSelecionado());
 		btnRemover.setBounds(130, 105, 117, 25);
 		contentPane.add(btnRemover);
-		
+
 		JLabel lblCdigo = new JLabel("Código");
 		lblCdigo.setBounds(12, 28, 70, 15);
 		contentPane.add(lblCdigo);
-		
+
 		textFieldCodigo = new JTextField();
 		textFieldCodigo.setEditable(false);
 		textFieldCodigo.setBounds(86, 28, 114, 19);
 		contentPane.add(textFieldCodigo);
 		textFieldCodigo.setColumns(10);
-		
+
 		JLabel lblStatus = new JLabel("Status");
 		lblStatus.setBounds(298, 28, 70, 15);
 		contentPane.add(lblStatus);

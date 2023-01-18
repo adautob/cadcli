@@ -39,6 +39,10 @@ public class ProdutosController {
 		} else {
 			try {
 				Produto produto = produtosHelper.getProduto();
+				if (produto.getPreco()==null) {
+					Produto p = this.getProduto();
+					produto.setPreco(p.getPreco());
+				}
 				produtosDAO.updateProduto(this.produtosHelper.getProdutoSelecionado(), produto);
 				System.out.println("Produto " + produto.getDescricao() + " atualizado com sucesso");
 				this.atualizarTabela();

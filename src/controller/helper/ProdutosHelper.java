@@ -17,11 +17,13 @@ public class ProdutosHelper {
 
 	public Produto getProduto() {
 		Long id = null;
+		Double preco = null;
 		if (!frmProdutos.getTextFieldCodigo().getText().equals("")) {
 			id = Long.parseLong(frmProdutos.getTextFieldCodigo().getText());
+			if (!frmProdutos.getTextFieldPreco().getText().contains("R"))
+				preco = Double.parseDouble(frmProdutos.getTextFieldPreco().getText());
 		}
-		return new Produto(id, frmProdutos.getTextFieldDescricao().getText(),
-				Double.parseDouble(frmProdutos.getTextFieldPreco().getText()));
+		return new Produto(id, frmProdutos.getTextFieldDescricao().getText(), preco);
 	}
 
 	public void limparCampos() {

@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.ProdutosController;
 import util.NumberRenderer;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class FrmProdutos extends JFrame {
 
@@ -160,6 +162,14 @@ public class FrmProdutos extends JFrame {
 		textFieldDescricao.setColumns(10);
 
 		textFieldPreco = new JTextField();
+		textFieldPreco.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (!textFieldCodigo.getText().equals("")) {
+					textFieldPreco.setText(produtosController.pegaPrecoProdutoSelecionado().toString());
+				}
+			}
+		});
 		
 		textFieldPreco.addKeyListener(new KeyAdapter() {
 			@Override

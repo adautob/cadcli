@@ -83,4 +83,8 @@ public class ProdutosController {
 
 	}
 
+	public Double pegaPrecoProdutoSelecionado() {
+		return getProduto().getPreco();
+	}
+
 }

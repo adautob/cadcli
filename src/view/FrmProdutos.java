@@ -117,24 +117,29 @@ public class FrmProdutos extends JFrame {
 
 			}
 		});
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
-				new String[] { "C\u00F3digo", "Descri\u00E7\u00E3o", "Pre\u00E7o" }) {
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+			},
+			new String[] {
+				"C\u00F3digo", "Descri\u00E7\u00E3o", "Pre\u00E7o"
+			}
+		) {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] { Integer.class, String.class, Double.class };
-
-			@SuppressWarnings({ "rawtypes", "unchecked" })
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
-
+		
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
+		
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(0).setMaxWidth(50);
@@ -146,7 +151,6 @@ public class FrmProdutos extends JFrame {
 		table.getColumnModel().getColumn(2).setPreferredWidth(50);
 		table.getColumnModel().getColumn(2).setMinWidth(50);
 		table.getColumnModel().getColumn(2).setCellRenderer(NumberRenderer.getCurrencyRenderer());
-
 
 		JLabel lblDescris = new JLabel("Descrição");
 		lblDescris.setBounds(12, 61, 70, 15);
@@ -175,7 +179,8 @@ public class FrmProdutos extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				String caracteres="0987654321.";// lista de caracters que devem ser aceitos
-				if(!caracteres.contains(e.getKeyChar()+"")){// se o caracter que gerou o
+				if(!caracteres.contains(e.getKeyChar()+"")
+						||(textFieldPreco.getText().contains("."))&&(e.getKeyChar()=='.')){// se o caracter que gerou o
 				//evento estiver não estiver na lista
 				e.consume();//aciona esse propriedade para eliminar a ação do evento
 				} 

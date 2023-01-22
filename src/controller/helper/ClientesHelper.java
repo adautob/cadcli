@@ -11,12 +11,14 @@ import view.FrmClientes;
 
 public class ClientesHelper {
 	private final FrmClientes frmClientes;
+	private SimpleDateFormat sdf;
 
 	public ClientesHelper(FrmClientes frmClientes) {
 		this.frmClientes = frmClientes;
+		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
-	public Cliente getCliente() throws ParseException {
+	public Cliente getCliente() throws ParseException{
 		Long id = null;
 		if (!frmClientes.getTextFieldId().getText().equals("")) {
 			id = Long.parseLong(frmClientes.getTextFieldId().getText());
@@ -25,7 +27,7 @@ public class ClientesHelper {
 				frmClientes.getTextFieldNome().getText(),
 				frmClientes.getTextFieldEmail().getText(),
 				frmClientes.getTextFieldTelefone().getText(),
-				new SimpleDateFormat("dd/MM/yyyy").parse(frmClientes.getTextFieldDataNasc().getText()));
+				sdf.parse(frmClientes.getTextFieldDataNasc().getText()));
 	}
 
 	public void limparCampos() {
@@ -69,7 +71,7 @@ public class ClientesHelper {
 		frmClientes.getTextFieldNome().setText(cliente.getNome());
 		frmClientes.getTextFieldEmail().setText(cliente.getEmail());
 		frmClientes.getTextFieldTelefone().setText(cliente.getTelefone());
-		frmClientes.getTextFieldDataNasc().setText(cliente.getDataNasc().toString());
+		frmClientes.getTextFieldDataNasc().setText(sdf.format(cliente.getDataNasc()));
 	}
 }
 

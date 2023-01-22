@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -42,8 +43,9 @@ public class Sistema extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws ParseException 
 	 */
-	public Sistema() {
+	public Sistema() throws ParseException {
 		Banco.inicia();
 		setTitle("Sistema");
 		setResizable(false);

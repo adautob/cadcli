@@ -2,6 +2,8 @@ package dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.ParseException;
+
 import org.junit.Test;
 
 import model.Cliente;
@@ -9,7 +11,7 @@ import model.Cliente;
 public class ClientesDAOTest {
 
 	@Test
-	public void test() {
+	public void test() throws ParseException {
 		
 		Banco.inicia();
 		

@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -82,7 +83,8 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", data =" + dataNasc + "]";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return "Cliente [nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", data=" + sdf.format(dataNasc) + "]";
 	}
 
 }

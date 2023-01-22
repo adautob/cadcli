@@ -36,6 +36,7 @@ public class FrmClientes extends JFrame {
 	private JTextField textFieldTelefone;
 	private JTextField textFieldId;
 	private MaskFormatter maskTel;
+	private MaskFormatter maskData;
 
 
 
@@ -77,7 +78,13 @@ public class FrmClientes extends JFrame {
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
-		textFieldDataNasc = new JTextField();
+		maskData = new MaskFormatter();
+		try {
+			maskData.setMask("##/##/####");
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		textFieldDataNasc = new JFormattedTextField(maskData);
 		textFieldDataNasc.setBounds(384, 95, 131, 19);
 		contentPane.add(textFieldDataNasc);
 		textFieldDataNasc.setColumns(10);

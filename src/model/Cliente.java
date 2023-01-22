@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Cliente {
@@ -8,19 +9,19 @@ public class Cliente {
 	private String nome;
 	private String email;
 	private String telefone;
-	private String idade;
+	private Date dataNasc;
 	private Status status;
 	private List<Venda> vendas;
 
 	public Cliente() {
 	}
 
-	public Cliente(Long id, String nome, String email, String telefone, String idade) {
+	public Cliente(Long id, String nome, String email, String telefone, Date dataNasc) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
-		this.idade = idade;
+		this.dataNasc = dataNasc;
 	}
 
 	public Long getId() {
@@ -63,12 +64,12 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public String getIdade() {
-		return idade;
+	public Date getDataNasc() {
+		return dataNasc;
 	}
 
-	public void setIdade(String idade) {
-		this.idade = idade;
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
 	}
 
 	public Status getStatus() {
@@ -81,7 +82,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", idade=" + idade + "]";
+		return "Cliente [nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", data =" + dataNasc + "]";
 	}
 
 }

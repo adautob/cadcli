@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import controller.helper.ClientesHelper;
@@ -30,7 +31,7 @@ public class ClientesController {
 		clientesHelper.preencherCampos(this.getCliente());
 	}
 
-	public void salvarCliente() {
+	public void salvarCliente() throws ParseException {
 		if (!clientesHelper.temClienteSelecionado()) {
 			Cliente cliente = clientesHelper.getCliente();
 			clientesDAO.AdicionarCliente(cliente);

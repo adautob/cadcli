@@ -30,7 +30,7 @@ public class FrmClientes extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldNome;
-	private JTextField textFieldIdade;
+	private JTextField textFieldDataNasc;
 	private JTable table;
 	private JTextField textFieldEmail;
 	private JTextField textFieldTelefone;
@@ -68,23 +68,30 @@ public class FrmClientes extends JFrame {
 		lblNome.setBounds(12, 82, 70, 15);
 		contentPane.add(lblNome);
 		
-		JLabel lblIdade = new JLabel("Idade:");
-		lblIdade.setBounds(384, 82, 70, 15);
-		contentPane.add(lblIdade);
+		JLabel lblDataNasc = new JLabel("Data Nascimento:");
+		lblDataNasc.setBounds(384, 82, 131, 15);
+		contentPane.add(lblDataNasc);
 		
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(12, 95, 350, 19);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
-		textFieldIdade = new JTextField();
-		textFieldIdade.setBounds(384, 95, 50, 19);
-		contentPane.add(textFieldIdade);
-		textFieldIdade.setColumns(10);
+		textFieldDataNasc = new JTextField();
+		textFieldDataNasc.setBounds(384, 95, 131, 19);
+		contentPane.add(textFieldDataNasc);
+		textFieldDataNasc.setColumns(10);
 		
 		JButton btnSalvar = new JButton("Salvar");
 
-		btnSalvar.addActionListener(e -> clientescontroller.salvarCliente());
+		btnSalvar.addActionListener(e -> {
+			try {
+				clientescontroller.salvarCliente();
+			} catch (ParseException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		});
 		btnSalvar.setBounds(12, 166, 117, 25);
 		contentPane.add(btnSalvar);
 		
@@ -227,8 +234,8 @@ public class FrmClientes extends JFrame {
 		return this.textFieldNome;
 	}
 
-	public JTextField getTextFieldIdade() {
-		return this.textFieldIdade;
+	public JTextField getTextFieldDataNasc() {
+		return this.textFieldDataNasc;
 	}
 	
 

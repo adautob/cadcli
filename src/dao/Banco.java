@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import model.Cliente;
 import model.Produto;
@@ -17,9 +18,9 @@ public class Banco {
 		clientes = new ArrayList<Cliente>();
 		produtos = new ArrayList<Produto>();
 		
-		Cliente c1 = new Cliente(1L, "Adauto Bueno", "adauto@email.com", "7384738743", "39");
-		Cliente c2 = new Cliente(2L, "Amanda Vivien Gomes de Castro Bueno", "amanda@email.com", "7384738743", "29");
-		Cliente c3 = new Cliente(3L, "Daniel de Castro Bueno", "daniel@email.com", "7384738743", "10");
+		Cliente c1 = new Cliente(1L, "Adauto Bueno", "adauto@email.com", "7384738743", new Date(1982-03-10));
+		Cliente c2 = new Cliente(2L, "Amanda Vivien Gomes de Castro Bueno", "amanda@email.com", "7384738743", new Date(1993-05-31));
+		Cliente c3 = new Cliente(3L, "Daniel de Castro Bueno", "daniel@email.com", "7384738743", new Date(2012-04-27));
 		
 		clientes.add(c1);
 		clientes.add(c2);

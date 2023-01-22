@@ -1,5 +1,7 @@
 package controller.helper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -14,15 +16,16 @@ public class ClientesHelper {
 		this.frmClientes = frmClientes;
 	}
 
-	public Cliente getCliente() {
+	public Cliente getCliente() throws ParseException {
 		Long id = null;
 		if (!frmClientes.getTextFieldId().getText().equals("")) {
 			id = Long.parseLong(frmClientes.getTextFieldId().getText());
 		}
-		return new Cliente(id, frmClientes.getTextFieldNome().getText(),
+		return new Cliente(id,
+				frmClientes.getTextFieldNome().getText(),
 				frmClientes.getTextFieldEmail().getText(),
 				frmClientes.getTextFieldTelefone().getText(),
-				frmClientes.getTextFieldIdade().getText());
+				new SimpleDateFormat("dd/MM/yyyy").parse(frmClientes.getTextFieldDataNasc().getText()));
 	}
 
 	public void limparCampos() {
@@ -30,7 +33,7 @@ public class ClientesHelper {
 		frmClientes.getTextFieldNome().setText("");
 		frmClientes.getTextFieldEmail().setText("");
 		frmClientes.getTextFieldTelefone().setText("");
-		frmClientes.getTextFieldIdade().setText("");
+		frmClientes.getTextFieldDataNasc().setText("");
 		frmClientes.getTextFieldNome().requestFocus();
 		frmClientes.getTable().removeRowSelectionInterval(0, frmClientes.getTable().getRowCount()-1);
 	}
@@ -66,7 +69,7 @@ public class ClientesHelper {
 		frmClientes.getTextFieldNome().setText(cliente.getNome());
 		frmClientes.getTextFieldEmail().setText(cliente.getEmail());
 		frmClientes.getTextFieldTelefone().setText(cliente.getTelefone());
-		frmClientes.getTextFieldIdade().setText(cliente.getIdade());
+		frmClientes.getTextFieldDataNasc().setText(cliente.getDataNasc().toString());
 	}
 }
 

@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -31,8 +33,6 @@ import controller.VendasController;
 import model.Item;
 import util.NumberRenderer;
 import util.TableCellListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class FrmVendas extends JFrame {
 
@@ -40,7 +40,6 @@ public class FrmVendas extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
@@ -51,28 +50,29 @@ public class FrmVendas extends JFrame {
 	private JTextField textFieldCodigoProduto;
 	private JTextField textFieldQtde;
 	private JTextField textFieldDescricao;
-	
+
 	private VendasController vendasController;
-	
+
 	private List<Item> itensAux;
 
 	public void AddItemListaAux(Item item) {
-		
+
 		// código para incrementar o ID, pois este não será fornecido pelo usuário
 		Long idMaior = 0L;
 		for (Item i : getItensAux()) {
-			if (i.getId() > idMaior) idMaior = i.getId();
+			if (i.getId() > idMaior)
+				idMaior = i.getId();
 		}
 
 		item.setId(++idMaior);
-		
+
 		itensAux.add(item);
 	}
-	
+
 	public void RemoveItemListaAux(Item item) {
 		itensAux.remove(item);
 	}
-	
+
 	public List<Item> getItensAux() {
 		return itensAux;
 	}
@@ -96,7 +96,7 @@ public class FrmVendas extends JFrame {
 	public JTextField getTextFieldCodigoProduto() {
 		return textFieldCodigoProduto;
 	}
-	
+
 	public JTextField getTextFieldDescricao() {
 		return textFieldDescricao;
 	}
@@ -108,8 +108,7 @@ public class FrmVendas extends JFrame {
 	public JTable getTable() {
 		return table;
 	}
-	
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -410,9 +409,11 @@ public class FrmVendas extends JFrame {
 		lblQuantidade.setBounds(130, 18, 35, 15);
 		panelItens.add(lblQuantidade);
 		
-		JButton button = new JButton("");
-		button.setBounds(5, 37, 20, 19);
-		panelItens.add(button);
+		JButton btnPesqProd = new JButton("");
+		btnPesqProd.addActionListener(e -> vendasController.abrirPesquisarProduto());
+		
+		btnPesqProd.setBounds(5, 37, 20, 19);
+		panelItens.add(btnPesqProd);
 		
 		textFieldDescricao = new JTextField();
 		textFieldDescricao.setEditable(false);

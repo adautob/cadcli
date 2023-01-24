@@ -1,11 +1,14 @@
 package controller;
 
+import javax.swing.JDialog;
+
 import controller.helper.VendasHelper;
 import dao.ProdutosDAO;
 import model.Cliente;
 import model.Item;
 import model.Produto;
 import view.FrmVendas;
+import view.PesqProd;
 
 public class VendasController {
 	private final FrmVendas frmVendas;
@@ -101,6 +104,16 @@ public class VendasController {
 	public void atualizarQtdePreco(int row, int column, Object newValue) {
 		vendasHelper.atualizarQtdePreco(row, column, newValue);
 		
+	}
+
+	public void abrirPesquisarProduto() {
+		try {
+			PesqProd dialog = new PesqProd(frmVendas,"Pesquisar Produto",true);
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 

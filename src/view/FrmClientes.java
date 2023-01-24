@@ -85,7 +85,7 @@ public class FrmClientes extends JFrame {
 			e1.printStackTrace();
 		}
 		textFieldDataNasc = new JFormattedTextField(maskData);
-		textFieldDataNasc.setBounds(384, 95, 131, 19);
+		textFieldDataNasc.setBounds(384, 95, 80, 19);
 		contentPane.add(textFieldDataNasc);
 		textFieldDataNasc.setColumns(10);
 		

@@ -33,6 +33,7 @@ import controller.VendasController;
 import model.Item;
 import util.NumberRenderer;
 import util.TableCellListener;
+import javax.swing.ImageIcon;
 
 public class FrmVendas extends JFrame {
 
@@ -410,6 +411,7 @@ public class FrmVendas extends JFrame {
 		panelItens.add(lblQuantidade);
 		
 		JButton btnPesqProd = new JButton("");
+		btnPesqProd.setIcon(new ImageIcon("/home/adauto/Downloads/lupa2(2).png"));
 		btnPesqProd.addActionListener(e -> vendasController.abrirPesquisarProduto());
 		
 		btnPesqProd.setBounds(5, 37, 20, 19);

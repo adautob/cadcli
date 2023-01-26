@@ -8,6 +8,7 @@ import model.Cliente;
 import model.Item;
 import model.Produto;
 import view.FrmVendas;
+import view.PesqCli;
 import view.PesqProd;
 
 public class VendasController {
@@ -115,6 +116,16 @@ public class VendasController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void abrirPesquisarCliente() {
+		try {
+			PesqCli dialog = new PesqCli(frmVendas,"Pesquisar Cliente",true);
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
 
 
 }

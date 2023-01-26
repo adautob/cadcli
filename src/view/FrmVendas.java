@@ -292,10 +292,11 @@ public class FrmVendas extends JFrame {
 		panelCliente.add(textFieldNomeCliente);
 		textFieldNomeCliente.setColumns(10);
 		
-		JButton btnPesquisarCliente = new JButton("");
-		btnPesquisarCliente.setIcon(new ImageIcon(FrmVendas.class.getResource("/view/lupa.png")));
-		btnPesquisarCliente.setBounds(5, 37, 20, 19);
-		panelCliente.add(btnPesquisarCliente);
+		JButton btnPesqCli = new JButton("");
+		btnPesqCli.setIcon(new ImageIcon(FrmVendas.class.getResource("/view/lupa.png")));
+		btnPesqCli.addActionListener(e -> vendasController.abrirPesquisarCliente());
+		btnPesqCli.setBounds(5, 37, 20, 19);
+		panelCliente.add(btnPesqCli);
 		
 		JPanel panelItens = new JPanel();
 		panelItens.setBorder(new TitledBorder(new LineBorder(new Color(64, 64, 64)), "Adicionar \u00CDtem", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));

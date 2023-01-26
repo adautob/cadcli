@@ -293,6 +293,7 @@ public class FrmVendas extends JFrame {
 		textFieldNomeCliente.setColumns(10);
 		
 		JButton btnPesquisarCliente = new JButton("");
+		btnPesquisarCliente.setIcon(new ImageIcon(FrmVendas.class.getResource("/view/lupa.png")));
 		btnPesquisarCliente.setBounds(5, 37, 20, 19);
 		panelCliente.add(btnPesquisarCliente);
 		
@@ -411,7 +412,7 @@ public class FrmVendas extends JFrame {
 		panelItens.add(lblQuantidade);
 		
 		JButton btnPesqProd = new JButton("");
-		btnPesqProd.setIcon(new ImageIcon("/home/adauto/Downloads/lupa2(2).png"));
+		btnPesqProd.setIcon(new ImageIcon(FrmVendas.class.getResource("/view/lupa.png")));
 		btnPesqProd.addActionListener(e -> vendasController.abrirPesquisarProduto());
 		
 		btnPesqProd.setBounds(5, 37, 20, 19);

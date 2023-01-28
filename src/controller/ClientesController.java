@@ -3,6 +3,8 @@ package controller;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import controller.helper.ClientesHelper;
 import dao.ClientesDAO;
 import model.Cliente;
@@ -19,8 +21,8 @@ public class ClientesController {
 		this.clientesDAO = new ClientesDAO();
 	}
 
-	public void fecharTela() {
-		frmClientes.setVisible(false);
+	public void fecharTela(JFrame jFrame) {
+		jFrame.dispose();
 	}
 
 	public void limparCampos() {

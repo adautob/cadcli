@@ -2,24 +2,24 @@ package controller;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import controller.helper.ProdutosHelper;
 import dao.ProdutosDAO;
 import model.Produto;
 import view.FrmProdutos;
 
 public class ProdutosController {
-	private final FrmProdutos frmProdutos;
 	private final ProdutosHelper produtosHelper;
 	private final ProdutosDAO produtosDAO;
 
 	public ProdutosController(FrmProdutos frmProdutos) {
-		this.frmProdutos = frmProdutos;
 		this.produtosHelper = new ProdutosHelper(frmProdutos);
 		this.produtosDAO = new ProdutosDAO();
 	}
 
-	public void fecharTela() {
-		frmProdutos.setVisible(false);
+	public void fecharTela(JFrame jFrame) {
+		jFrame.dispose();
 	}
 
 	public void limparCampos() {

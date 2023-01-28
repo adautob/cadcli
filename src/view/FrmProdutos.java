@@ -197,7 +197,7 @@ public class FrmProdutos extends JFrame {
 		contentPane.add(btnNovo);
 
 		JButton btnSair = new JButton("Sair");
-		btnSair.addActionListener(e -> produtosController.fecharTela());
+		btnSair.addActionListener(e -> produtosController.fecharTela(this));
 		btnSair.setBounds(377, 105, 117, 25);
 		contentPane.add(btnSair);
 

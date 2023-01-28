@@ -1,9 +1,9 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 import controller.helper.VendasHelper;
 import dao.ClientesDAO;
@@ -28,8 +28,8 @@ public class VendasController {
 		this.clientesDAO = new ClientesDAO();
 	}
 
-	public void fecharTela() {
-		frmVendas.setVisible(false);
+	public void fecharTela(JFrame jFrame) {
+		jFrame.dispose();
 	}
 
 
@@ -135,6 +135,10 @@ public class VendasController {
 
 	public List<Cliente> buscarClientesPorNome(String nome) {
 		return clientesDAO.getClientesByName(nome);
+	}
+
+	public void fecharTela(JDialog jDialog) {
+		jDialog.dispose();
 	}	
 
 

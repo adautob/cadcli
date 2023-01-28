@@ -61,7 +61,7 @@ public class FrmClientes extends JFrame {
 		
 		JButton btnNewButton = new JButton("Sair");
 		
-		btnNewButton.addActionListener(e -> clientescontroller.fecharTela()); // actionlistener usando lambda
+		btnNewButton.addActionListener(e -> clientescontroller.fecharTela(this)); // actionlistener usando lambda
 		btnNewButton.setBounds(349, 166, 117, 25);
 		contentPane.add(btnNewButton);
 		

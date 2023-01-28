@@ -49,9 +49,10 @@ public class PesqCli extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				cancelButton.addActionListener(e -> vendasController.fecharTela(this));
 			}
 		}
 
@@ -67,12 +68,26 @@ public class PesqCli extends JDialog {
 			new String[] {
 				"ID", "Nome"
 			}
-		));
+		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			boolean[] columnEditables = new boolean[] {
+				false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(0).setMinWidth(50);
 		table.getColumnModel().getColumn(0).setMaxWidth(50);
+		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(150);
 		table.getColumnModel().getColumn(1).setMinWidth(150);
+		table.getColumnModel().getColumn(1).setMaxWidth(250);
 		scrollPane.setViewportView(table);
 
 		JLabel lblPesquisarClientePor = new JLabel("Digite o nome");

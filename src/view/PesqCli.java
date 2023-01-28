@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class PesqCli extends JDialog {
 
@@ -17,7 +19,7 @@ public class PesqCli extends JDialog {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-	private JTextField textField;
+	private JTextField textFieldPesqCli;
 
 
 
@@ -59,9 +61,32 @@ public class PesqCli extends JDialog {
 		lblPesquisarClientePor.setBounds(3, 12, 100, 15);
 		getContentPane().add(lblPesquisarClientePor);
 		
-		textField = new JTextField();
-		textField.setBounds(3, 30, 285, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldPesqCli = new JTextField();
+		textFieldPesqCli.setBounds(3, 30, 285, 19);
+		getContentPane().add(textFieldPesqCli);
+		textFieldPesqCli.setColumns(10);
+		textFieldPesqCli.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+
+				System.out.println("change");
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+
+				System.out.println("insert");
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+
+				System.out.println("remove");
+			}
+			
+			
+		});	
+		
 	}
 }

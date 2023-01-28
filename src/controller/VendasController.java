@@ -1,8 +1,12 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JDialog;
 
 import controller.helper.VendasHelper;
+import dao.ClientesDAO;
 import dao.ProdutosDAO;
 import model.Cliente;
 import model.Item;
@@ -15,11 +19,13 @@ public class VendasController {
 	private final FrmVendas frmVendas;
 	private final VendasHelper vendasHelper;
 	private final ProdutosDAO produtosDAO;
+	private final ClientesDAO clientesDAO;
 
 	public VendasController(FrmVendas frmVendas) {
 		this.frmVendas = frmVendas;
 		this.vendasHelper = new VendasHelper(frmVendas);
 		this.produtosDAO = new ProdutosDAO();
+		this.clientesDAO = new ClientesDAO();
 	}
 
 	public void fecharTela() {
@@ -125,6 +131,10 @@ public class VendasController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<Cliente> buscarClientesPorNome(String nome) {
+		return clientesDAO.getClientesByName(nome);
 	}	
 
 

@@ -2,6 +2,7 @@ package dao;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Cliente;
 
@@ -51,6 +52,16 @@ public class ClientesDAO {
 	
 	public void updateCliente(int index, Cliente cliente) {
 		Banco.clientes.set(index, cliente);
+	}
+
+	public List<Cliente> getClientesByName(String nome) {
+		List<Cliente> clientesAux = new ArrayList<Cliente>();
+		
+		for (Cliente cli : Banco.clientes) {
+			if (cli.getNome().toLowerCase().contains(nome.toLowerCase())) clientesAux.add(cli);
+		}
+		
+		return clientesAux;
 	}
 
 

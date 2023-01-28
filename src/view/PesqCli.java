@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.FlowLayout;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,6 +12,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+
+import controller.VendasController;
+import model.Cliente;
 
 public class PesqCli extends JDialog {
 
@@ -20,14 +25,14 @@ public class PesqCli extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTextField textFieldPesqCli;
-
-
+	private VendasController vendasController;
 
 	/**
 	 * Create the dialog.
 	 */
 	public PesqCli(FrmVendas mf, String title, boolean modal) {
 		super(mf, title, modal);
+		vendasController = new VendasController(mf);
 		setResizable(false);
 		setBounds(100, 100, 300, 200);
 		setLocationRelativeTo(mf);
@@ -49,18 +54,31 @@ public class PesqCli extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(3, 56, 285, 75);
 		getContentPane().add(scrollPane);
-		
+
 		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+			},
+			new String[] {
+				"ID", "Nome"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(50);
+		table.getColumnModel().getColumn(0).setMinWidth(50);
+		table.getColumnModel().getColumn(0).setMaxWidth(50);
+		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+		table.getColumnModel().getColumn(1).setMinWidth(150);
 		scrollPane.setViewportView(table);
-		
+
 		JLabel lblPesquisarClientePor = new JLabel("Digite o nome");
 		lblPesquisarClientePor.setBounds(3, 12, 100, 15);
 		getContentPane().add(lblPesquisarClientePor);
-		
+
 		textFieldPesqCli = new JTextField();
 		textFieldPesqCli.setBounds(3, 30, 285, 19);
 		getContentPane().add(textFieldPesqCli);
@@ -69,24 +87,31 @@ public class PesqCli extends JDialog {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-
-				System.out.println("change");
+				preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-
-				System.out.println("insert");
+				preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-
-				System.out.println("remove");
+				preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
 			}
-			
-			
-		});	
-		
+
+		});
+
+	}
+
+	protected void preencherTabelaPesq(List<Cliente> clientes) {
+		DefaultTableModel tm = (DefaultTableModel) table.getModel();
+
+		tm.setNumRows(0);
+
+		for (Cliente cliente : clientes) {
+			tm.addRow(new Object[] { cliente.getId(), cliente.getNome() });
+
+		}
 	}
 }

@@ -143,7 +143,7 @@ public class VendasController {
 
 	public List<Produto> buscarProdutosPorDesc(String desc) {
 		return produtosDAO.getProdutosPorDesc(desc);
-	}	
+	}
 
 
 }

@@ -25,6 +25,7 @@ public class PesqCli extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTextField textFieldPesqCli;
+	
 	private VendasController vendasController;
 
 	/**
@@ -46,6 +47,16 @@ public class PesqCli extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
+				okButton.addActionListener(e -> {
+					if (table.getSelectedRow()>-1) {
+						DefaultTableModel tm = (DefaultTableModel) table.getModel();
+						if (tm.getValueAt(table.getSelectedRow(), 0) != null) {
+							mf.getTextFieldIdCliente().setText(tm.getValueAt(table.getSelectedRow(), 0).toString());
+							vendasController.fecharTela(this);
+							mf.getTextFieldIdCliente().requestFocus();
+						}
+					}
+				});
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
@@ -126,7 +137,6 @@ public class PesqCli extends JDialog {
 
 		for (Cliente cliente : clientes) {
 			tm.addRow(new Object[] { cliente.getId(), cliente.getNome() });
-
 		}
 	}
 }

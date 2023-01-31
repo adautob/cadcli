@@ -48,6 +48,16 @@ public class PesqProd extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
+				okButton.addActionListener(e -> {
+					if (table.getSelectedRow()>-1) {
+						DefaultTableModel tm = (DefaultTableModel) table.getModel();
+						if (tm.getValueAt(table.getSelectedRow(), 0) != null) {
+							mf.getTextFieldCodigoProduto().setText(tm.getValueAt(table.getSelectedRow(), 0).toString());
+							vendasController.fecharTela(this);
+							mf.getTextFieldCodigoProduto().requestFocus();
+						}
+					}
+				});				
 				getRootPane().setDefaultButton(okButton);
 			}
 			{

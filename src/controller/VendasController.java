@@ -139,6 +139,10 @@ public class VendasController {
 
 	public void fecharTela(JDialog jDialog) {
 		jDialog.dispose();
+	}
+
+	public List<Produto> buscarProdutosPorDesc(String desc) {
+		return produtosDAO.getProdutosPorDesc(desc);
 	}	
 
 

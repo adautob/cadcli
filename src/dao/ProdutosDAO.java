@@ -2,6 +2,7 @@ package dao;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Produto;
 
@@ -48,6 +49,16 @@ public class ProdutosDAO {
 	
 	public void updateProduto(int index, Produto produto) {
 		Banco.produtos.set(index, produto);
+	}
+
+	public List<Produto> getProdutosPorDesc(String desc) {
+		List<Produto> produtosAux = new ArrayList<Produto>();
+		
+		for (Produto pro : Banco.produtos) {
+			if (pro.getDescricao().toLowerCase().contains(desc.toLowerCase())) produtosAux.add(pro);
+		}
+		
+		return produtosAux;
 	}
 
 

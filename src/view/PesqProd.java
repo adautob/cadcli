@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.FlowLayout;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -9,9 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.VendasController;
+import model.Produto;
 
 public class PesqProd extends JDialog {
 
@@ -20,7 +24,7 @@ public class PesqProd extends JDialog {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-	private JTextField textField;
+	private JTextField textFieldPesqProd;
 	private VendasController vendasController;
 
 
@@ -92,9 +96,42 @@ public class PesqProd extends JDialog {
 		lblPesquisarClientePor.setBounds(3, 12, 120, 15);
 		getContentPane().add(lblPesquisarClientePor);
 		
-		textField = new JTextField();
-		textField.setBounds(3, 30, 285, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldPesqProd = new JTextField();
+		textFieldPesqProd.setBounds(3, 30, 285, 19);
+		getContentPane().add(textFieldPesqProd);
+		textFieldPesqProd.setColumns(10);
+		textFieldPesqProd.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+			}
+
+		});		
+		
+	}
+
+
+
+	protected void preencherTabelaPesq(List<Produto> produtos) {
+		DefaultTableModel tm = (DefaultTableModel) table.getModel();
+
+		tm.setNumRows(0);
+
+		for (Produto produto : produtos) {
+			tm.addRow(new Object[] { produto.getId(), produto.getDescricao() });
+
+		}
+		
 	}
 }

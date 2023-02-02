@@ -53,7 +53,7 @@ public class PesqCli extends JDialog {
 						if (tm.getValueAt(table.getSelectedRow(), 0) != null) {
 							mf.getTextFieldIdCliente().setText(tm.getValueAt(table.getSelectedRow(), 0).toString());
 							vendasController.fecharTela(this);
-							mf.getTextFieldIdCliente().requestFocus();
+							mf.getTextFieldCodigoProduto().requestFocus();
 						}
 					}
 				});

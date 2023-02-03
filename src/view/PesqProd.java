@@ -27,8 +27,6 @@ public class PesqProd extends JDialog {
 	private JTextField textFieldPesqProd;
 	private VendasController vendasController;
 
-
-
 	/**
 	 * Create the dialog.
 	 */
@@ -49,7 +47,7 @@ public class PesqProd extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				okButton.addActionListener(e -> {
-					if (table.getSelectedRow()>-1) {
+					if (table.getSelectedRow() > -1) {
 						DefaultTableModel tm = (DefaultTableModel) table.getModel();
 						if (tm.getValueAt(table.getSelectedRow(), 0) != null) {
 							mf.getTextFieldCodigoProduto().setText(tm.getValueAt(table.getSelectedRow(), 0).toString());
@@ -57,7 +55,7 @@ public class PesqProd extends JDialog {
 							mf.getTextFieldCodigoProduto().requestFocus();
 						}
 					}
-				});				
+				});
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
@@ -67,27 +65,20 @@ public class PesqProd extends JDialog {
 				cancelButton.addActionListener(e -> vendasController.fecharTela(this));
 			}
 		}
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(3, 56, 285, 75);
 		getContentPane().add(scrollPane);
-		
+
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-			},
-			new String[] {
-				"C\u00F3digo", "Descri\u00E7\u00E3o"
-			}
-		) {
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null }, },
+				new String[] { "C\u00F3digo", "Descri\u00E7\u00E3o" }) {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				false, false
-			};
+			boolean[] columnEditables = new boolean[] { false, false };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -101,11 +92,11 @@ public class PesqProd extends JDialog {
 		table.getColumnModel().getColumn(1).setMinWidth(150);
 		table.getColumnModel().getColumn(1).setMaxWidth(250);
 		scrollPane.setViewportView(table);
-		
+
 		JLabel lblPesquisarClientePor = new JLabel("Digite o produto");
 		lblPesquisarClientePor.setBounds(3, 12, 120, 15);
 		getContentPane().add(lblPesquisarClientePor);
-		
+
 		textFieldPesqProd = new JTextField();
 		textFieldPesqProd.setBounds(3, 30, 285, 19);
 		getContentPane().add(textFieldPesqProd);
@@ -114,34 +105,42 @@ public class PesqProd extends JDialog {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+				if (!textFieldPesqProd.getText().equals(""))
+					preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+				else
+					preencherTabelaPesq(null);
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+				if (!textFieldPesqProd.getText().equals(""))
+					preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+				else
+					preencherTabelaPesq(null);
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+				if (!textFieldPesqProd.getText().equals(""))
+					preencherTabelaPesq(vendasController.buscarProdutosPorDesc(textFieldPesqProd.getText()));
+				else
+					preencherTabelaPesq(null);
 			}
 
-		});		
-		
+		});
+
 	}
-
-
 
 	protected void preencherTabelaPesq(List<Produto> produtos) {
 		DefaultTableModel tm = (DefaultTableModel) table.getModel();
 
 		tm.setNumRows(0);
 
-		for (Produto produto : produtos) {
-			tm.addRow(new Object[] { produto.getId(), produto.getDescricao() });
+		if (produtos != null)
+			for (Produto produto : produtos) {
+				tm.addRow(new Object[] { produto.getId(), produto.getDescricao() });
 
-		}
-		
+			}
+
 	}
 }

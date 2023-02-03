@@ -25,7 +25,7 @@ public class PesqCli extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTextField textFieldPesqCli;
-	
+
 	private VendasController vendasController;
 
 	/**
@@ -48,7 +48,7 @@ public class PesqCli extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				okButton.addActionListener(e -> {
-					if (table.getSelectedRow()>-1) {
+					if (table.getSelectedRow() > -1) {
 						DefaultTableModel tm = (DefaultTableModel) table.getModel();
 						if (tm.getValueAt(table.getSelectedRow(), 0) != null) {
 							mf.getTextFieldIdCliente().setText(tm.getValueAt(table.getSelectedRow(), 0).toString());
@@ -72,21 +72,13 @@ public class PesqCli extends JDialog {
 		getContentPane().add(scrollPane);
 
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-			},
-			new String[] {
-				"ID", "Nome"
-			}
-		) {
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "ID", "Nome" }) {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				false, false
-			};
+			boolean[] columnEditables = new boolean[] { false, false };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -113,17 +105,26 @@ public class PesqCli extends JDialog {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
+				if (!textFieldPesqCli.getText().equals(""))
+					preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
+				else
+					preencherTabelaPesq(null);
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
+				if (!textFieldPesqCli.getText().equals(""))
+					preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
+				else
+					preencherTabelaPesq(null);
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
+				if (!textFieldPesqCli.getText().equals(""))
+					preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
+				else
+					preencherTabelaPesq(null);
 			}
 
 		});
@@ -135,8 +136,9 @@ public class PesqCli extends JDialog {
 
 		tm.setNumRows(0);
 
-		for (Cliente cliente : clientes) {
-			tm.addRow(new Object[] { cliente.getId(), cliente.getNome() });
-		}
+		if (clientes != null)
+			for (Cliente cliente : clientes) {
+				tm.addRow(new Object[] { cliente.getId(), cliente.getNome() });
+			}
 	}
 }

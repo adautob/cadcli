@@ -11,7 +11,6 @@ public class Cliente {
 	private String email;
 	private String telefone;
 	private Date dataNasc;
-	private Status status;
 	private List<Venda> vendas;
 
 	public Cliente() {
@@ -73,13 +72,6 @@ public class Cliente {
 		this.dataNasc = dataNasc;
 	}
 
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
 
 	@Override
 	public String toString() {

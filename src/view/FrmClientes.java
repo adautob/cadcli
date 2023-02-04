@@ -198,10 +198,6 @@ public class FrmClientes extends JFrame {
 		lblId.setBounds(12, 54, 70, 15);
 		contentPane.add(lblId);
 		
-		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setBounds(241, 54, 70, 15);
-		contentPane.add(lblStatus);
-		
 		textFieldId = new JTextField();
 		textFieldId.setEditable(false);
 		textFieldId.setBounds(32, 51, 80, 19);

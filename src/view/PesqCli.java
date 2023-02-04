@@ -105,7 +105,7 @@ public class PesqCli extends JDialog {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				if (!textFieldPesqCli.getText().equals(""))
+				if (!textFieldPesqCli.getText().trim().equals(""))
 					preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
 				else
 					preencherTabelaPesq(null);
@@ -113,7 +113,7 @@ public class PesqCli extends JDialog {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				if (!textFieldPesqCli.getText().equals(""))
+				if (!textFieldPesqCli.getText().trim().equals(""))
 					preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
 				else
 					preencherTabelaPesq(null);
@@ -121,7 +121,7 @@ public class PesqCli extends JDialog {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				if (!textFieldPesqCli.getText().equals(""))
+				if (!textFieldPesqCli.getText().trim().equals(""))
 					preencherTabelaPesq(vendasController.buscarClientesPorNome(textFieldPesqCli.getText()));
 				else
 					preencherTabelaPesq(null);

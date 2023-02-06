@@ -35,6 +35,7 @@ public class TelaController {
 		FrmVendas frmVendas = new FrmVendas();
 		frmVendas.setLocationRelativeTo(tela);
 		frmVendas.setVisible(true);
+		frmVendas.getTextFieldIdCliente().requestFocus();
 	}
 	
 	public Banco getBanco() {

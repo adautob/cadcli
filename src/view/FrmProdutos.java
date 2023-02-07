@@ -221,10 +221,6 @@ public class FrmProdutos extends JFrame {
 		contentPane.add(textFieldCodigo);
 		textFieldCodigo.setColumns(10);
 
-		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setBounds(298, 28, 70, 15);
-		contentPane.add(lblStatus);
-
 		produtosController.atualizarTabela();
 
 	}

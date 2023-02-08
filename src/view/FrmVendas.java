@@ -447,14 +447,18 @@ public class FrmVendas extends JFrame {
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(12, 340, 117, 25);
+		btnSalvar.addActionListener(e -> vendasController.salvarVenda());
 		contentPane.add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(139, 340, 117, 25);
+		btnCancelar.addActionListener(e -> vendasController.cancelarVenda());
 		contentPane.add(btnCancelar);
 		
 		JButton btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.setEnabled(false);
 		btnFinalizar.setBounds(265, 340, 117, 25);
+		btnFinalizar.addActionListener(e -> vendasController.finalizarVenda());
 		contentPane.add(btnFinalizar);
 	}
 }

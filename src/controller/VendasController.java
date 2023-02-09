@@ -145,19 +145,13 @@ public class VendasController {
 		return produtosDAO.getProdutosPorDesc(desc);
 	}
 
-	public Object salvarVenda() {
-		// TODO Auto-generated method stub
-		return null;
+	public void salvarVenda() {
 	}
 
-	public Object cancelarVenda() {
-		// TODO Auto-generated method stub
-		return null;
+	public void cancelarVenda() {
 	}
 
-	public Object finalizarVenda() {
-		// TODO Auto-generated method stub
-		return null;
+	public void finalizarVenda() {
 	}
 
 

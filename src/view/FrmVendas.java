@@ -209,6 +209,7 @@ public class FrmVendas extends JFrame {
 		        System.out.println("New   : " + tcl.getNewValue());
 				vendasController.atualizarQtdePreco(tcl.getRow(), tcl.getColumn(), tcl.getNewValue());
 			}
+			
 		};
 
 		new TableCellListener(table, action);
@@ -434,7 +435,7 @@ public class FrmVendas extends JFrame {
 		panelItens.add(lblX);
 		
 		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setBounds(247, 0, 70, 15);
+		lblStatus.setBounds(243, 0, 70, 15);
 		contentPane.add(lblStatus);
 		
 		JLabel lblData = new JLabel("Data");

@@ -146,12 +146,26 @@ public class VendasController {
 	}
 
 	public void salvarVenda() {
+		//verificar se dados da tela são válidos
+		
+		// chamar DAO para salvar a venda
+		
+		// atualizar Id venda, status e data na tela
 	}
 
 	public void cancelarVenda() {
+		// verificar se venda ja está salva
+		// se estiver, alterar status para cancelada
+		// se nao estiver salva, limpar dados da tela
+		
+		
+		
 	}
 
 	public void finalizarVenda() {
+		// mudar status para finalizada
+		// apos finalizar venda, bloquear tela para edição
+		
 	}
 
 

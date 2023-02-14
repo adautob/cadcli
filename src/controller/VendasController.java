@@ -32,75 +32,68 @@ public class VendasController {
 		jFrame.dispose();
 	}
 
-
 	public void preencherCampos() {
-		//vendasHelper.preencherCampos();
+		// vendasHelper.preencherCampos();
 	}
 
 	public void salvarProduto() {/*
-		if (!produtosHelper.temProdutoSelecionado()) {
-			Produto produto = produtosHelper.getProduto();
-			produtosDAO.AdicionarProduto(produto);
-			this.atualizarTabela();
-			produtosHelper.limparCampos();
-		} else {
-			try {
-				Produto produto = produtosHelper.getProduto();
-				produtosDAO.updateProduto(this.produtosHelper.getProdutoSelecionado(), produto);
-				System.out.println("Produto " + produto.getDescricao() + " atualizado com sucesso");
-				this.atualizarTabela();
-			} catch (Exception e) {
-				System.out.println("Erro ao atualizar produto");
-			}
-
-		}*/
+									 * if (!produtosHelper.temProdutoSelecionado()) { Produto produto =
+									 * produtosHelper.getProduto(); produtosDAO.AdicionarProduto(produto);
+									 * this.atualizarTabela(); produtosHelper.limparCampos(); } else { try { Produto
+									 * produto = produtosHelper.getProduto();
+									 * produtosDAO.updateProduto(this.produtosHelper.getProdutoSelecionado(),
+									 * produto); System.out.println("Produto " + produto.getDescricao() +
+									 * " atualizado com sucesso"); this.atualizarTabela(); } catch (Exception e) {
+									 * System.out.println("Erro ao atualizar produto"); }
+									 * 
+									 * }
+									 */
 
 	}
 
 	public void atualizarTabela() {/*
-		ProdutosDAO produtoDAO = new ProdutosDAO();
-		ArrayList<Produto> produtos = produtoDAO.selectAll();
-		this.produtosHelper.preencherTabela(produtos);*/
+									 * ProdutosDAO produtoDAO = new ProdutosDAO(); ArrayList<Produto> produtos =
+									 * produtoDAO.selectAll(); this.produtosHelper.preencherTabela(produtos);
+									 */
 	}
 
 	/*
-	public Produto getProduto() {
-		return produtosDAO.getProduto(this.produtosHelper.getProdutoSelecionado());
-
-	}*/
+	 * public Produto getProduto() { return
+	 * produtosDAO.getProduto(this.produtosHelper.getProdutoSelecionado());
+	 * 
+	 * }
+	 */
 
 	public void removerSelecionado() {/*
-		System.out.println(produtosHelper.temProdutoSelecionado());
-
-		if (produtosHelper.temProdutoSelecionado()) {
-			Produto produto = this.getProduto();
-			if (produtosDAO.RemoverProduto(produto)) {
-				System.out.println("Produto " + produto.getDescricao() + " removido com sucesso");
-				this.atualizarTabela();
-			} else {
-				System.out.println("Erro ao remover produto");
-			}
-
-		}*/
+										 * System.out.println(produtosHelper.temProdutoSelecionado());
+										 * 
+										 * if (produtosHelper.temProdutoSelecionado()) { Produto produto =
+										 * this.getProduto(); if (produtosDAO.RemoverProduto(produto)) {
+										 * System.out.println("Produto " + produto.getDescricao() +
+										 * " removido com sucesso"); this.atualizarTabela(); } else {
+										 * System.out.println("Erro ao remover produto"); }
+										 * 
+										 * }
+										 */
 
 	}
 
 	public void buscarCliente(Long id) {
-		
+
 		Cliente cliente = vendasHelper.getClienteById(id);
 		vendasHelper.preencherCliente(cliente.getNome());
-		
+
 	}
 
 	public void buscarProduto(long id) {
 		Produto produto = vendasHelper.getProdutoById(id);
 		vendasHelper.preencherDescricaoProduto(produto.getDescricao());
-		
+
 	}
 
 	public void adicionarItem(long id, Integer qtde) {
 		Produto produto = produtosDAO.getProdutoById(id);
-		Double total = produto.getPreco()*qtde;
+		Double total = produto.getPreco() * qtde;
 		Item item = new Item(null, produto.getId(), qtde, produto.getPreco(), total);
 		vendasHelper.AdicionarNaListaAuxiliar(item);
 		vendasHelper.preencherTabela(frmVendas.getItensAux());
@@ -110,22 +103,22 @@ public class VendasController {
 
 	public void atualizarQtdePreco(int row, int column, Object newValue) {
 		vendasHelper.atualizarQtdePreco(row, column, newValue);
-		
+
 	}
 
 	public void abrirPesquisarProduto() {
 		try {
-			PesqProd dialog = new PesqProd(frmVendas,"Pesquisar Produto",true);
+			PesqProd dialog = new PesqProd(frmVendas, "Pesquisar Produto", true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void abrirPesquisarCliente() {
 		try {
-			PesqCli dialog = new PesqCli(frmVendas,"Pesquisar Cliente",true);
+			PesqCli dialog = new PesqCli(frmVendas, "Pesquisar Cliente", true);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -146,27 +139,31 @@ public class VendasController {
 	}
 
 	public void salvarVenda() {
-		//verificar se dados da tela são válidos
-		
-		// chamar DAO para salvar a venda
-		
-		// atualizar Id venda, status e data na tela
+		// verificar se dados da tela são válidos
+		if (!frmVendas.getTextFieldNomeCliente().getText().equals("")
+				&& !frmVendas.getItensAux().isEmpty()) {
+
+			// chamar DAO para salvar a venda
+
+			// atualizar Id venda, status e data na tela
+
+		} else {
+			System.out.println("Dados incompletos");
+		}
+
 	}
 
 	public void cancelarVenda() {
 		// verificar se venda ja está salva
 		// se estiver, alterar status para cancelada
 		// se nao estiver salva, limpar dados da tela
-		
-		
-		
+
 	}
 
 	public void finalizarVenda() {
 		// mudar status para finalizada
 		// apos finalizar venda, bloquear tela para edição
-		
-	}
 
+	}
 
 }

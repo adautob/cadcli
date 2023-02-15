@@ -8,7 +8,6 @@ import model.Cliente;
 
 public class ClientesDAO {
 	
-	Banco banco;
 	
 	public ClientesDAO() {	
 	}

@@ -6,11 +6,13 @@ import java.util.ArrayList;
 
 import model.Cliente;
 import model.Produto;
+import model.Venda;
 
 public class Banco {
 	
 	public static ArrayList<Cliente> clientes;
 	public static ArrayList<Produto> produtos;
+	public static ArrayList<Venda> vendas;
 
 	public Banco() {
 	}
@@ -18,6 +20,7 @@ public class Banco {
 	public static void inicia() throws ParseException {
 		clientes = new ArrayList<Cliente>();
 		produtos = new ArrayList<Produto>();
+		vendas = new ArrayList<Venda>();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		Cliente c1 = new Cliente(1L, "Adauto Bueno", "adauto@email.com", "(47)99164-4475", sdf.parse("10/03/1982"));
@@ -35,6 +38,7 @@ public class Banco {
 		produtos.add(p1);
 		produtos.add(p2);
 		produtos.add(p3);
+		
 		
 	}
 

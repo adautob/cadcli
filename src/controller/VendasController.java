@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -8,9 +9,12 @@ import javax.swing.JFrame;
 import controller.helper.VendasHelper;
 import dao.ClientesDAO;
 import dao.ProdutosDAO;
+import dao.VendasDAO;
 import model.Cliente;
 import model.Item;
 import model.Produto;
+import model.StatusVenda;
+import model.Venda;
 import view.FrmVendas;
 import view.PesqCli;
 import view.PesqProd;
@@ -20,12 +24,14 @@ public class VendasController {
 	private final VendasHelper vendasHelper;
 	private final ProdutosDAO produtosDAO;
 	private final ClientesDAO clientesDAO;
+	private final VendasDAO vendasDAO;
 
 	public VendasController(FrmVendas frmVendas) {
 		this.frmVendas = frmVendas;
 		this.vendasHelper = new VendasHelper(frmVendas);
 		this.produtosDAO = new ProdutosDAO();
 		this.clientesDAO = new ClientesDAO();
+		this.vendasDAO = new VendasDAO();
 	}
 
 	public void fecharTela(JFrame jFrame) {
@@ -82,6 +88,12 @@ public class VendasController {
 
 		Cliente cliente = vendasHelper.getClienteById(id);
 		vendasHelper.preencherCliente(cliente.getNome());
+
+	}
+	
+	public Cliente getClienteById(Long id) {
+
+		return vendasHelper.getClienteById(id);
 
 	}
 
@@ -142,8 +154,22 @@ public class VendasController {
 		// verificar se dados da tela são válidos
 		if (!frmVendas.getTextFieldNomeCliente().getText().equals("")
 				&& !frmVendas.getItensAux().isEmpty()) {
+			Long id = Long.parseLong(frmVendas.getTextFieldIdCliente().getText());
+			
+			Double total = 0D;
+			for (Item i : frmVendas.getItensAux()) {
+				total += i.getTotal();
+			}
+			
+			// montar venda com os dados da tela
+			Venda venda  = new Venda(getClienteById(id),
+					new Date(),
+					StatusVenda.ABERTA,
+					frmVendas.getItensAux(),
+					total);
 
 			// chamar DAO para salvar a venda
+			vendasDAO.salvarVenda(venda);
 
 			// atualizar Id venda, status e data na tela
 

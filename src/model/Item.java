@@ -50,6 +50,13 @@ public class Item {
 		this.preco = preco;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", id_produto=" + id_produto + ", quantidade=" + quantidade + ", preco=" + preco
+				+ ", total=" + total + "]";
+	}
+
+	
 
 
 }

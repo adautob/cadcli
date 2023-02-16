@@ -12,7 +12,12 @@ public class Venda {
 	private List<Item> itens;
 	private Double totalVenda;
 	
-	
+
+	@Override
+	public String toString() {
+		return "Venda [id=" + id + ", cliente=" + cliente + ", dataVenda=" + dataVenda + ", statusVenda=" + statusVenda
+				+ ", itens=" + itens + ", totalVenda=" + totalVenda + "]";
+	}
 
 	public Venda(Cliente cliente, Date dataVenda, StatusVenda statusVenda, List<Item> itens, Double totalVenda) {
 		super();

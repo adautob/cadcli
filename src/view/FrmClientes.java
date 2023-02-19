@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -95,7 +96,8 @@ public class FrmClientes extends JFrame {
 			try {
 				clientescontroller.salvarCliente();
 			} catch (ParseException e2) {
-				// TODO Auto-generated catch block
+				// TODO implementar solução para validar a data
+				JOptionPane.showMessageDialog(null, "Digite uma data válida!\nErro "+e2.getMessage());
 				e2.printStackTrace();
 			}
 		});

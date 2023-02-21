@@ -97,7 +97,7 @@ public class FrmClientes extends JFrame {
 				clientescontroller.salvarCliente();
 			} catch (ParseException e2) {
 				// TODO implementar solução para validar a data
-				JOptionPane.showMessageDialog(null, "Digite uma data válida!\nErro "+e2.getMessage());
+				JOptionPane.showMessageDialog(this, "Digite uma data válida!\nErro "+e2.getMessage());
 				e2.printStackTrace();
 			}
 		});

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import controller.helper.VendasHelper;
 import dao.ClientesDAO;
@@ -174,7 +175,7 @@ public class VendasController {
 			// atualizar Id venda, status e data na tela
 
 		} else {
-			System.out.println("Dados incompletos");
+			JOptionPane.showMessageDialog(frmVendas, "Dados incompletos!");
 		}
 
 	}

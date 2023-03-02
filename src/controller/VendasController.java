@@ -170,10 +170,14 @@ public class VendasController {
 					total);
 
 			// chamar DAO para salvar a venda
-			vendasDAO.salvarVenda(venda);
+			Venda vendaSalva = vendasDAO.salvarVenda(venda);
 
 			// atualizar Id venda, status e data na tela
 
+			frmVendas.getLabelIdVenda().setText("Id Venda: " + vendaSalva.getId());
+			frmVendas.getLabelStatus().setText("Status: " + vendaSalva.getStatusVenda());
+			frmVendas.getLabelData().setText("Data: " + vendaSalva.getDataVenda());
+			
 		} else {
 			JOptionPane.showMessageDialog(frmVendas, "Dados incompletos!");
 		}

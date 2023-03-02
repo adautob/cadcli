@@ -4,7 +4,7 @@ import model.Venda;
 
 public class VendasDAO {
 
-	public void salvarVenda(Venda venda) {
+	public Venda salvarVenda(Venda venda) {
 		Long max = 0L;
 		for (Venda ven : Banco.vendas) {
 			if (ven.getId() > max)
@@ -15,6 +15,7 @@ public class VendasDAO {
 
 		System.out.println("A venda foi salva:");
 		System.out.println(venda);
+		return venda;
 
 	}
 

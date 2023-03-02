@@ -42,6 +42,9 @@ public class FrmVendas extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private JLabel labelIdVenda;
+	private JLabel labelStatus;
+	private JLabel labelData;
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
 	private JTable table;
@@ -434,16 +437,19 @@ public class FrmVendas extends JFrame {
 		lblX.setBounds(110, 39, 10, 15);
 		panelItens.add(lblX);
 		
-		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setBounds(243, 0, 70, 15);
+		labelStatus = new JLabel("Status");
+		JLabel lblStatus = labelStatus;
+		lblStatus.setBounds(152, 0, 199, 15);
 		contentPane.add(lblStatus);
 		
-		JLabel lblData = new JLabel("Data");
-		lblData.setBounds(437, 0, 70, 15);
+		labelData = new JLabel("Data");
+		JLabel lblData = labelData;
+		lblData.setBounds(363, 0, 206, 15);
 		contentPane.add(lblData);
 		
-		JLabel lblIdVenda = new JLabel("Id Venda");
-		lblIdVenda.setBounds(12, 0, 70, 15);
+		labelIdVenda = new JLabel("Id Venda");
+		JLabel lblIdVenda = labelIdVenda;
+		lblIdVenda.setBounds(12, 0, 117, 15);
 		contentPane.add(lblIdVenda);
 		
 		JButton btnSalvar = new JButton("Salvar");
@@ -461,5 +467,17 @@ public class FrmVendas extends JFrame {
 		btnFinalizar.setBounds(265, 340, 117, 25);
 		btnFinalizar.addActionListener(e -> vendasController.finalizarVenda());
 		contentPane.add(btnFinalizar);
+	}
+
+	public JLabel getLabelStatus() {
+		return labelStatus;
+	}
+
+	public JLabel getLabelData() {
+		return labelData;
+	}
+
+	public JLabel getLabelIdVenda() {
+		return labelIdVenda;
 	}
 }
